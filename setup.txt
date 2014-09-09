@@ -1,0 +1,12 @@
+How to install Node-Webkit for development
+
+Install Node from http://nodejs.org/
+
+Install npm packages we'll need:
+npm install nodewebkit -g
+npm install latex -g
+npm install git -g
+
+For future reference, this is how to launch the app for testing:
+cd the/project/directory
+npm start
