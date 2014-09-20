@@ -36,7 +36,11 @@ var FormManager = (function() {
     
   }
   
-  function ItemsList(className, defaults, labels, extras, container, add) {
+  function ItemsList(className, defaults, labels, extras, container) {
+    var add = document.createElement("div");
+    add.classList.add("add");
+    add.innerHTML = "+";
+    
     var removeItem = function(evt) {
       var item = this.parentNode;
       item.classList.add("deleting");
@@ -108,6 +112,8 @@ var FormManager = (function() {
     add.addEventListener("click", function() {
       this.addItem();
     }.bind(this));
+    
+    container.appendChild(add);
   }
   
   
@@ -130,7 +136,7 @@ var FormManager = (function() {
     profiles = new ItemsList("item", {
       "network": "Network",
       "url": "URL"
-    }, {}, {}, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    }, {}, {}, f.element("profiles"));
     
     work = new ItemsList("item object", {
       "company": "CVPress",
@@ -152,7 +158,7 @@ var FormManager = (function() {
         "header": "Highlights",
         "placeholder": "Cool skill used"
       }
-    }, f.element("work"), f.element("work").getElementsByClassName("add")[0]);
+    }, f.element("work"));
     
     
     //Fill forms

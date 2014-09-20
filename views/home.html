@@ -11,6 +11,10 @@
         <h1 id="title">
           <a href="#">CVPress</a>
         </h1>
+        <div id="right">
+          <a class="button" href="#">Export PDF</a>
+          <a class="button" href="#">Export HTML</a>
+        </div>
       </div>
     </div>
     <form name="input" action="/creator" method="post">
@@ -58,10 +62,6 @@
 
             <div id="profiles" class="subsection">
               <h3>Profiles</h3>
-              
-              <div class="add">
-                +
-              </div>
 
             </div>
 
@@ -69,10 +69,6 @@
           
           <div id="work" class="section">
             <h2>Work</h2>
-            
-            <div class="add">
-              +
-            </div>
           </div>
           
           <input type="hidden" name="_token" value="<%= token %>">

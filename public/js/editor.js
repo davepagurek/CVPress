@@ -1,3 +1,5 @@
+
+
 window.addEventListener("load", function() {
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -16,6 +18,15 @@ window.addEventListener("load", function() {
   xmlhttp.send();
   
   FormManager.init({});
+  
+  window.addEventListener("scroll", function(evt) {
+    var dist=20;
+    if (window.pageYOffset>dist && document.body.className != "scrolled") {
+      document.body.className = "scrolled";
+    } else if (window.pageYOffset<=dist && document.body.className == "scrolled") {
+      document.body.className = "";
+    }
+  });
   
   
   /*FormManager.init({
