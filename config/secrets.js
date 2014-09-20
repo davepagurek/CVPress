@@ -82,10 +82,10 @@ module.exports = {
   },
 
   linkedin: {
-    clientID: process.env.LINKEDIN_ID || '77chexmowru601',
-    clientSecret: process.env.LINKEDIN_SECRET || 'szdC8lN2s2SuMSy8',
+    clientID: process.env.LINKEDIN_ID || '77bcma4keunf47',
+    clientSecret: process.env.LINKEDIN_SECRET || '5XZflmfyCLASF7nj',
     callbackURL: '/auth/linkedin/callback',
-    scope: ['r_fullprofile', 'r_emailaddress', 'r_network'],
+    scope: ['r_fullprofile', 'r_emailaddress', 'r_network','r_basicprofile','r_contactinfo'],
     passReqToCallback: true
   },
 
