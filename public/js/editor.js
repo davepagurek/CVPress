@@ -1,6 +1,7 @@
 
 
 window.addEventListener("load", function() {
+  var attempts=0;
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -11,15 +12,17 @@ window.addEventListener("load", function() {
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       console.log(xmlhttp.responseText);
-    } else {
+    } else if (xmlhttp.readyState==4 && attempts<2) {
       xmlhttp.open("GET","/auth/linkedin",true);
       xmlhttp.send();
+      attempts++;
     }
   };
   
   document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
     xmlhttp.open("GET","/api/linkedin",true);
     xmlhttp.send();
+    attempts=0;
   });
   
   FormManager.init({});
