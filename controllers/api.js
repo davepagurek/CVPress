@@ -146,6 +146,35 @@ exports.getLinkedin = function(req, res, next) {
         });
     }
     /*
+     * PARSE SKILLS DATA FROM LINKEDIN API
+     */
+    var _skills = [];
+
+    for(var i in $in.skills.values){
+        var element = $in.skills.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _skills.push({
+            name: element.skill.name,
+            level: "",
+            keywords: ""
+        });
+    }
+    /*
+     * PARSE LANGUAGES DATA FROM LINKEDIN API
+     */
+    var _languages = [];
+
+    for(var i in $in.languages.values){
+        var element = $in.languages.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _languages.push({
+            language: element.language.name,
+            fluency: ""
+        });
+    }
+    /*
      * PARSE VOLUNTEER DATA FROM LINKEDIN API
      */
     var _volunteer = [];
@@ -194,15 +223,8 @@ exports.getLinkedin = function(req, res, next) {
         website: "",
         summary: ""
       }],
-    skills: [{
-        name: "",
-        level: "",
-        keywords: ""
-      }],
-    languages: [{
-        language: "",
-        fluency: ""
-      }],
+    skills: _skills,
+    languages: _languages,
     interests: [{
         name: "",
         keywords: ""
