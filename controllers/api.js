@@ -146,7 +146,16 @@ exports.getLinkedin = function(req, res, next) {
 
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
-      res.send($in);
+
+    var ResumeModel = mongoose.model('Resume', resumeSchema);
+    // Creating one user.
+    var me = new ResumeModel ({
+      basics:{
+        name:$in.formatted-name,
+        email:$in.email-address
+      }
+    });
+    res.send(me);
       /*
     res.render('api/linkedin', {
       title: 'LinkedIn API',
