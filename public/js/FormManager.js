@@ -1,4 +1,38 @@
-
+function ItemsList(container, add) {
+  var removeItem = function(evt) {
+    var item = this.parentNode;
+    item.classList.add("deleting");
+    
+    var timer = setTimeout(function() {
+      container.removeChild(item);
+    }, 420);
+  };
+  
+  this.addItem = function(item) {
+    item = item || {
+      "network": "",
+      "url": ""
+    };
+    
+    container.removeChild(add);
+    
+    var profileDiv = document.createElement("div");
+    profileDiv.className = "item";
+    
+    profileDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
+    profileDiv.innerHTML += '<div class="input"><input type="text" class="profile label" value="' + item.network + '" placeholder="Profile" /></div>';
+    profileDiv.innerHTML += '<div class="input"><input type="text" class="url" value="' + item.url + '" placeholder="URL" /></div>';
+    
+    profileDiv.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
+    
+    container.appendChild(profileDiv);
+    container.appendChild(add);
+  };
+  
+  add.addEventListener("click", function() {
+    this.addProfile();
+  }.bind(this));
+}
 
 var FormManager = (function() {
   
@@ -10,42 +44,10 @@ var FormManager = (function() {
     return document.getElementById(el);
   };
   
-  var removeProfile = function(evt) {
-    var profile = this.parentNode;
-    profile.classList.add("deleting");
-    
-    var timer = setTimeout(function() {
-      profiles.removeChild(profile);
-    }, 420);
-  };
   
-  f.addProfile = function(profile) {
-    profile = profile || {
-      "network": "",
-      "url": ""
-    };
-    
-    profiles.removeChild(add);
-    
-    var profileDiv = document.createElement("div");
-    profileDiv.className = "item";
-    
-    profileDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
-    profileDiv.innerHTML += '<div class="input"><input type="text" class="profile label" value="' + profile.network + '" placeholder="Profile" /></div>';
-    profileDiv.innerHTML += '<div class="input"><input type="text" class="url" value="' + profile.url + '" placeholder="URL" /></div>';
-    
-    profileDiv.getElementsByClassName("remove")[0].addEventListener("click", removeProfile);
-    
-    profiles.appendChild(profileDiv);
-    profiles.appendChild(add);
-  };
   
   f.init = function(json) {
-    profiles = f.element("profiles");
-    add = profiles.getElementsByClassName("add")[0];
-    add.addEventListener("click", function() {
-      f.addProfile();
-    });
+    profiles = new ItemsList(f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
     
     if (json.basics) {
       if (json.basics.name) {
@@ -61,7 +63,7 @@ var FormManager = (function() {
         f.element("website").value = json.basics.website;
       }
       if (json.basics.profiles) {
-        json.basics.profiles.forEach(f.addProfile);
+        json.basics.profiles.forEach(profiles.addItem);
       }
       if (json.basics.location.address) {
         f.element("address").value = json.basics.location.address;
@@ -72,6 +74,10 @@ var FormManager = (function() {
       if (json.basics.location.location) {
         f.element("location").value = json.basics.location.location;
       }
+    }
+    
+    if (json.work) {
+      
     }
   };
   
