@@ -115,15 +115,17 @@ exports.getResume = function(req, res) {
 //Find resume by ID
 exports.getResumeByID = function(req, res) {
     var mId = req.params.resumeID;
-    ResumeModel.findOne({id:mId}).exec(function(err, result) {
-      if (result) {
+    var obj = new mongoose.Types.ObjectId(mId);
+    ResumeModel.find({_id:obj}).exec(function(err, result) {
+      if (!err) {
          // handle result
         res.send(result);
+          //console.log("HELLO");
       } else {
         // error handling
-          res.send("Nothing!");
+          res.send(err);
       };
-    });
+    }); 
   
 };
 

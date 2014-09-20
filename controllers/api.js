@@ -88,7 +88,7 @@ exports.getLinkedin = function(req, res, next) {
 
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
-    
+    console.log($in);
     /*
      * PARSE EDUCATION DATA FROM LINKEDIN API
      */
