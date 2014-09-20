@@ -81,7 +81,7 @@ var resumeSchema = new mongoose.Schema({
  * "Pre" is a Mongoose middleware that executes before each user.save() call.
  */
 
-userSchema.pre('save', function(next) {
+resumeSchema.pre('save', function(next) {
   var resume = this;
 });
 
@@ -91,7 +91,7 @@ userSchema.pre('save', function(next) {
  * Used in Navbar and Account Management page.
  */
 
-userSchema.methods.gravatar = function(size) {
+resumeSchema.methods.gravatar = function(size) {
   if (!size) size = 200;
 
   if (!this.email) {
