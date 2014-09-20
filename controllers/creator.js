@@ -12,7 +12,6 @@ var cheerio = require('cheerio');
 var request = require('request');
 var graph = require('fbgraph');
 var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
-var ig = require('instagram-node').instagram();
 var Y = require('yui/yql');
 var _ = require('lodash');
 
