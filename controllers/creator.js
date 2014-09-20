@@ -3,6 +3,19 @@ var secrets = require('../config/secrets');
 var User = require('../models/User');
 var ResumeModel = require('../models/Resume');
 
+var secrets = require('../config/secrets');
+var User = require('../models/User');
+var querystring = require('querystring');
+var validator = require('validator');
+var async = require('async');
+var cheerio = require('cheerio');
+var request = require('request');
+var graph = require('fbgraph');
+var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
+var ig = require('instagram-node').instagram();
+var Y = require('yui/yql');
+var _ = require('lodash');
+
 /**
  * POST /creator
  * Resume creation process
@@ -108,3 +121,4 @@ exports.getFacebook = function(req, res) {
     title: 'Contact'
   });
 };
+
