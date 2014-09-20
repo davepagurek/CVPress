@@ -1,40 +1,49 @@
-function ItemsList(container, add) {
-  var removeItem = function(evt) {
-    var item = this.parentNode;
-    item.classList.add("deleting");
-    
-    var timer = setTimeout(function() {
-      container.removeChild(item);
-    }, 420);
-  };
-  
-  this.addItem = function(item) {
-    item = item || {
-      "network": "",
-      "url": ""
-    };
-    
-    container.removeChild(add);
-    
-    var profileDiv = document.createElement("div");
-    profileDiv.className = "item";
-    
-    profileDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
-    profileDiv.innerHTML += '<div class="input"><input type="text" class="profile label" value="' + item.network + '" placeholder="Profile" /></div>';
-    profileDiv.innerHTML += '<div class="input"><input type="text" class="url" value="' + item.url + '" placeholder="URL" /></div>';
-    
-    profileDiv.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
-    
-    container.appendChild(profileDiv);
-    container.appendChild(add);
-  };
-  
-  add.addEventListener("click", function() {
-    this.addProfile();
-  }.bind(this));
-}
-
 var FormManager = (function() {
+  
+  //Classes
+  function ItemsList(defaults, container, add) {
+    var removeItem = function(evt) {
+      var item = this.parentNode;
+      item.classList.add("deleting");
+
+      var timer = setTimeout(function() {
+        container.removeChild(item);
+      }, 420);
+    };
+
+    this.addItem = function(item) {
+      item = item || {
+        "network": "",
+        "url": ""
+      };
+
+      container.removeChild(add);
+
+      var itemDiv = document.createElement("div");
+      itemDiv.className = "item";
+
+      itemDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
+      
+      for (var key in defaults) {
+        if (defaults.hasOwnProperty(key)) {
+          itemDiv.innerHTML += '<div class="input"><input type="text" class="' + key + ' label" value="' + item.network + '" placeholder="' + defaults[key] + '" /></div>';
+        }
+      }
+      
+      itemDiv.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
+
+      container.appendChild(itemDiv);
+      container.appendChild(add);
+    };
+
+    add.addEventListener("click", function() {
+      this.addItem();
+    }.bind(this));
+  }
+  
+  
+  
+  //Functions
   
   var f= {};
   
@@ -47,7 +56,18 @@ var FormManager = (function() {
   
   
   f.init = function(json) {
-    profiles = new ItemsList(f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    profiles = new ItemsList({
+      "profile": "Profile",
+      "url": "URL"
+    }, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    work = new ItemsList({
+      "company": "Company",
+      "position": "Position",
+      "website": "Website",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "summary": "Summary",
+    }, f.element("work"), f.element("work").getElementsByClassName("add")[0]);
     
     if (json.basics) {
       if (json.basics.name) {
@@ -77,7 +97,7 @@ var FormManager = (function() {
     }
     
     if (json.work) {
-      
+      //json.work.forEach(work.addItem);
     }
   };
   
