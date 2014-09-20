@@ -42,6 +42,7 @@ body {
 
 .scrolled #menu:hover {
   opacity:1;
+  background-color:#FFF;
 }
 
 #menu h1 {
@@ -160,7 +161,7 @@ li {
   transition: all 0.2s linear;
 }
 
-.item .remove {
+.section .remove {
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -ms-transition: all 0.2s linear;
@@ -173,11 +174,11 @@ li {
   right:0;
 }
 
-.item:hover .remove {
+.section:hover .remove {
   color:#CCC;
 }
 
-.item:hover .remove:hover {
+.section:hover .remove:hover {
   color:#000;
 }
 
@@ -196,7 +197,7 @@ li {
 }
 
 li.add {
-  font-size:14px;
+  font-size:20px;
   display:block;
   line-height:38px;
   height:38px;
@@ -204,8 +205,9 @@ li.add {
 }
 
 li.add span {
-  font-size:20px;
+  font-size:14px;
   margin-left:15px;
+  line-height:38px;
 }
 
 .section:hover .add {
@@ -286,7 +288,7 @@ li input[type="text"] {
 
 
 /* Button styles */
-input[type="submit"], a.button {
+input[type="button"], a.button {
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -ms-transition: all 0.2s linear;
@@ -303,7 +305,7 @@ input[type="submit"], a.button {
   font-weight: normal;
 }
 
-input[type="submit"]:hover, a.button:hover {
+input[type="button"]:hover, a.button:hover {
   background-color:#5d97b9;
 }
 
@@ -328,6 +330,14 @@ input.h1 {
   margin:0 auto;
   text-align:center;
   font-family: 'Arvo', serif;
+}
+
+#skills {
+  width:60%;
+}
+
+#skills input {
+  width: 4  00px;
 }
 
 

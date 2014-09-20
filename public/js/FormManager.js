@@ -28,7 +28,7 @@ var FormManager = (function() {
       list.appendChild(add);
     }
     
-    list.innerHTML += '<li class="add">&bull; <span>+</span></li>';
+    list.innerHTML += '<li class="add">+ <span>Add new</span></li>';
     add = list.getElementsByClassName("add")[0];
     add.addEventListener("click", function() {
       this.addItem();
@@ -122,8 +122,6 @@ var FormManager = (function() {
   
   var f= {};
   
-  var profiles, add;
-  
   f.element = function(el) {
     return document.getElementById(el);
   };
@@ -133,12 +131,14 @@ var FormManager = (function() {
   f.init = function(json) {
     
     //Initialize forms
-    profiles = new ItemsList("item", {
+    var profiles = new ItemsList("item", {
       "network": "Network",
       "url": "URL"
     }, {}, {}, f.element("profiles"));
     
-    work = new ItemsList("item object", {
+    var skills = new BulletList(f.element("skills"), "Node.js Development");
+    
+    var work = new ItemsList("item object", {
       "company": "CVPress",
       "position": "Developer",
       "website": "www.google.com",
@@ -160,7 +160,7 @@ var FormManager = (function() {
       }
     }, f.element("work"));
     
-    volunteer = new ItemsList("item object", {
+    var volunteer = new ItemsList("item object", {
       "organization": "CVPress",
       "position": "Developer",
       "website": "www.google.com",
@@ -182,7 +182,7 @@ var FormManager = (function() {
       }
     }, f.element("volunteer"));
     
-    education = new ItemsList("item object", {
+    var education = new ItemsList("item object", {
       "institution": "University of Waterloo",
       "area": "Software Engineering",
       "studyType": "Post-Secondary",
@@ -203,6 +203,13 @@ var FormManager = (function() {
         "placeholder": "Linear Algebra for Engineering"
       }
     }, f.element("education"));
+    
+    var awards = new ItemsList("item", {
+      "title": "Title",
+      "date": "Date",
+      "awarder": "Awarder",
+      "summary": "Summary"
+    }, {}, {}, f.element("awards"));
     
     
     //Fill forms
@@ -233,8 +240,36 @@ var FormManager = (function() {
       }
     }
     
+    if (json.skills) {
+      json.skills.forEach(function(skill) {
+        skills.addItem(skill["name"]);
+      });
+    } else {
+      skills.addItem("");
+    }
+    
     if (json.work) {
       json.work.forEach(work.addItem);
+    } else {
+      work.addItem();
+    }
+    
+    if (json.volunteer) {
+      json.volunteer.forEach(volunteer.addItem);
+    } else {
+      volunteer.addItem();
+    }
+    
+    if (json.education) {
+      json.education.forEach(education.addItem);
+    } else {
+      education.addItem();
+    }
+    
+    if (json.awards) {
+      json.awards.forEach(awards.addItem);
+    } else {
+      awards.addItem();
     }
   };
   
