@@ -34,6 +34,10 @@ window.addEventListener("load", function() {
     }
   });
   
+  document.getElementById("save").addEventListener("click", function() {
+    console.log(FormManager.makeJSON());
+  });
+  
   
   /*FormManager.init({
     "basics": {

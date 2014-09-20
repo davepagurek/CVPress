@@ -122,8 +122,25 @@ var FormManager = (function() {
   
   var f= {};
   
+  var skills, work, volunteer, education, awards;
+  
   f.element = function(el) {
     return document.getElementById(el);
+  };
+  
+  f.makeJSON = function() {
+    var j = {
+      "basic": {
+        /*"name": f.element("name").value,
+        "email": f.element("email").value,
+        "phone": f.element("phone").value,
+        "website": f.element("website").value,
+        "profiles": profiles.makeJSON(),
+        "location": 
+      }*/
+    };
+    
+    return j;
   };
   
   
@@ -131,14 +148,14 @@ var FormManager = (function() {
   f.init = function(json) {
     
     //Initialize forms
-    var profiles = new ItemsList("item", {
+    profiles = new ItemsList("item", {
       "network": "Network",
       "url": "URL"
     }, {}, {}, f.element("profiles"));
     
-    var skills = new BulletList(f.element("skills"), "Node.js Development");
+    skills = new BulletList(f.element("skills"), "Node.js Development");
     
-    var work = new ItemsList("item object", {
+    work = new ItemsList("item object", {
       "company": "CVPress",
       "position": "Developer",
       "website": "www.google.com",
@@ -160,7 +177,7 @@ var FormManager = (function() {
       }
     }, f.element("work"));
     
-    var volunteer = new ItemsList("item object", {
+    volunteer = new ItemsList("item object", {
       "organization": "CVPress",
       "position": "Developer",
       "website": "www.google.com",
@@ -182,7 +199,7 @@ var FormManager = (function() {
       }
     }, f.element("volunteer"));
     
-    var education = new ItemsList("item object", {
+    education = new ItemsList("item object", {
       "institution": "University of Waterloo",
       "area": "Software Engineering",
       "studyType": "Post-Secondary",
@@ -204,7 +221,7 @@ var FormManager = (function() {
       }
     }, f.element("education"));
     
-    var awards = new ItemsList("item", {
+    awards = new ItemsList("item", {
       "title": "Title",
       "date": "Date",
       "awarder": "Awarder",
