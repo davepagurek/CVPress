@@ -84,6 +84,15 @@ body {
   vertical-align:middle;
 }
 
+.item.object {
+  display:block;
+  margin: 0 0 20px 0;
+}
+
+.item.object input {
+  width: 500px;
+}
+
 .item:hover {
   border: 1px solid #DDD;
 }
@@ -165,7 +174,7 @@ input[type="text"]:focus {
   border-bottom: 2px solid #a1bac9;
 }
 
-.input label{
+.input label {
   display:inline-block;
   font-weight:lighter;
   font-style: italic;

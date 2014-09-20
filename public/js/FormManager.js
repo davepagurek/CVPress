@@ -1,7 +1,7 @@
 var FormManager = (function() {
   
   //Classes
-  function ItemsList(defaults, container, add) {
+  function ItemsList(className, defaults, labels, container, add) {
     var removeItem = function(evt) {
       var item = this.parentNode;
       item.classList.add("deleting");
@@ -12,21 +12,26 @@ var FormManager = (function() {
     };
 
     this.addItem = function(item) {
-      item = item || {
-        "network": "",
-        "url": ""
-      };
+      item = item || {};
+      
 
       container.removeChild(add);
 
       var itemDiv = document.createElement("div");
-      itemDiv.className = "item";
+      itemDiv.className = className;
 
       itemDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
       
       for (var key in defaults) {
         if (defaults.hasOwnProperty(key)) {
-          itemDiv.innerHTML += '<div class="input"><input type="text" class="' + key + ' label" value="' + item.network + '" placeholder="' + defaults[key] + '" /></div>';
+          if (className.indexOf("object") != -1) {
+            itemDiv.innerHTML += '<div class="input labeled">\
+                                  <label for="' + key + '">' + (labels.hasOwnProperty(key)?labels[key]:"") + '</label>\
+                                  <input type="text" id="' + key + '" name="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" />\
+                                  </div>';
+          } else {
+            itemDiv.innerHTML += '<div class="input"><input type="text" class="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" /></div>';
+          }
         }
       }
       
@@ -56,19 +61,31 @@ var FormManager = (function() {
   
   
   f.init = function(json) {
-    profiles = new ItemsList({
-      "profile": "Profile",
+    
+    //Initialize forms
+    profiles = new ItemsList("item", {
+      "network": "Network",
       "url": "URL"
-    }, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
-    work = new ItemsList({
+    }, {}, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    
+    work = new ItemsList("item object", {
+      "company": "CVPress",
+      "position": "Developer",
+      "website": "www.google.com",
+      "startDate": "September 19, 2014",
+      "endDate": "September 21, 2014",
+      "summary": "A resume creation tool"
+    }, {
       "company": "Company",
       "position": "Position",
       "website": "Website",
       "startDate": "Start date",
       "endDate": "End date",
-      "summary": "Summary",
+      "summary": "Summary"
     }, f.element("work"), f.element("work").getElementsByClassName("add")[0]);
     
+    
+    //Fill forms
     if (json.basics) {
       if (json.basics.name) {
         f.element("name").value = json.basics.name;
@@ -97,7 +114,7 @@ var FormManager = (function() {
     }
     
     if (json.work) {
-      //json.work.forEach(work.addItem);
+      json.work.forEach(work.addItem);
     }
   };
   
