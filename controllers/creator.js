@@ -98,7 +98,7 @@ exports.postResume = function(req, res) {
             reference: ""
           }]
     });
-    
+    me.save(function (err) {if (err) console.log ('Error on save!')});
     //res.send(201, null);
   res.send(me);
 };
