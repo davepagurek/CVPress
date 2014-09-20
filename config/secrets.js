@@ -82,8 +82,8 @@ module.exports = {
   },
 
   linkedin: {
-    clientID: process.env.LINKEDIN_ID || '77bcma4keunf47',
-    clientSecret: process.env.LINKEDIN_SECRET || '5XZflmfyCLASF7nj',
+    clientID: process.env.LINKEDIN_ID || '77dqe9q06zyq88',
+    clientSecret: process.env.LINKEDIN_SECRET || 'aJe4KFLsfP6BfhtJ',
     callbackURL: '/auth/linkedin/callback',
     scope: ['r_fullprofile', 'r_emailaddress', 'r_network','r_basicprofile','r_contactinfo'],
     passReqToCallback: true
