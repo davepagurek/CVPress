@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script type="text/javascript" src="js/FormManager.js"></script>
+    <script type="text/javascript" src="js/editor.js"></script>
   </head>
   <body>
     <div id="menu">
@@ -10,6 +11,11 @@
         <h1 id="title">
           <a href="#">CVPress</a>
         </h1>
+        <div id="right">
+          <a class="button" id="importLinkedIn">Import from LinkedIn</a>
+          <a class="button">Export PDF</a>
+          <a class="button">Export HTML</a>
+        </div>
       </div>
     </div>
     <form name="input" action="/creator" method="post">
@@ -57,10 +63,6 @@
 
             <div id="profiles" class="subsection">
               <h3>Profiles</h3>
-              
-              <div class="add">
-                +
-              </div>
 
             </div>
 
@@ -68,10 +70,6 @@
           
           <div id="work" class="section">
             <h2>Work</h2>
-            
-            <div class="add">
-              +
-            </div>
           </div>
           
           <input type="hidden" name="_token" value="<%= token %>">

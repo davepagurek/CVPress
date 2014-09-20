@@ -16,17 +16,19 @@ var FormManager = (function() {
     this.addItem = function(str) {
       list.removeChild(add);
       
-      list.innerHTML+='<li>\
-                       &bull; <input type="text" value="' + (str?str:"") + '" placeholder="' + (placeholder?placeholder:"") + '" />\
-                       <div class="remove"><i class="fa fa-times"></i></div>\
-                       </li>';
+      var li = document.createElement("li");
       
-      list.getElementsByClassName("remove")[list.getElementsByClassName("remove").length-1].addEventListener("click", removeItem);
+      li.innerHTML+='&bull; <input type="text" value="' + (str?str:"") + '" placeholder="' + (placeholder?placeholder:"") + '" />\
+                     <div class="remove"><i class="fa fa-times"></i></div>';
+      
+      list.appendChild(li);
+      
+      li.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
       
       list.appendChild(add);
     }
     
-    list.innerHTML += '<ul class="add">+</ul>';
+    list.innerHTML += '<li class="add">&bull; <span>+</span></li>';
     add = list.getElementsByClassName("add")[0];
     add.addEventListener("click", function() {
       this.addItem();
@@ -34,14 +36,18 @@ var FormManager = (function() {
     
   }
   
-  function ItemsList(className, defaults, labels, extras, container, add) {
+  function ItemsList(className, defaults, labels, extras, container) {
+    var add = document.createElement("div");
+    add.classList.add("add");
+    add.innerHTML = "+";
+    
     var removeItem = function(evt) {
       var item = this.parentNode;
       item.classList.add("deleting");
 
       var timer = setTimeout(function() {
         container.removeChild(item);
-      }, 420);
+      }, 400);
     };
 
     this.addItem = function(item) {
@@ -106,6 +112,8 @@ var FormManager = (function() {
     add.addEventListener("click", function() {
       this.addItem();
     }.bind(this));
+    
+    container.appendChild(add);
   }
   
   
@@ -128,7 +136,7 @@ var FormManager = (function() {
     profiles = new ItemsList("item", {
       "network": "Network",
       "url": "URL"
-    }, {}, {}, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    }, {}, {}, f.element("profiles"));
     
     work = new ItemsList("item object", {
       "company": "CVPress",
@@ -150,7 +158,7 @@ var FormManager = (function() {
         "header": "Highlights",
         "placeholder": "Cool skill used"
       }
-    }, f.element("work"), f.element("work").getElementsByClassName("add")[0]);
+    }, f.element("work"));
     
     
     //Fill forms
@@ -189,43 +197,3 @@ var FormManager = (function() {
   return f;
   
 }());
-
-
-window.addEventListener("load", function() {
-  FormManager.init({
-    "basics": {
-      "name": "John Doe",
-      "email": "test@test.com",
-      "phone": "(555) 555-5555",
-      "website": "johndoe.com",
-      "location": {
-        "address": "123 Road Rd.",
-        "postalCode": "1O1 O1O",
-        "location": "Townville, ON, Canada"
-      },
-      "profiles": [{
-          "network": "GitHub",
-          "username": "johndoe",
-          "url": "github.com/johndoe"
-        },
-        {
-          "network": "LinkedIn",
-          "username": "johndoe",
-          "url": "linkedin.com/johndoe"
-        }
-      ]
-    },
-    "work": [{
-      "company": "CVPress",
-      "position": "Developer",
-      "website": "www.google.com",
-      "startDate": "September 19, 2014",
-      "endDate": "September 21, 2014",
-      "summary": "A resume creation tool",
-      "highlights": [
-        "UI design",
-        "Node.js stuff"
-      ]
-    }]
-  });
-});
