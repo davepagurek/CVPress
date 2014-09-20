@@ -1,5 +1,63 @@
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  </head>
   <body>
-    <h1>test</h1>
+    <div id="menu">
+      <div class="wrapper">
+        <h1 id="title">
+          <a href="#">CVPress</a>
+        </h1>
+      </div>
+    </div>
+    <form name="input" action="/creator" method="post">
+    <div class="wrapper">
+      <div id="resume">
+        <input type="text" id="name" value="" class="h1" placeholder="John Doe" />
+        
+        <div id="contact" class="section">
+          
+          <h2>Contact</h2>
+          
+          <div class="input labeled">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="" placeholder="johndoe@gmail.com" />
+          </div>
+          
+          <div class="input labeled">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" value="" placeholder="(555) 555-5555" />
+          </div>
+          
+          
+          <div id="profiles" class="subsection">
+            <h3>Profiles</h3>
+            
+            <div class="item">
+              <div class="remove"><i class="fa fa-times"></i></div>
+              <div class="input"><input type="text" class="profile label" value="" placeholder="Profile" /></div>
+              <div class="input"><input type="text" class="url" value="" placeholder="URL" /></div>
+            </div>
+            
+            <div class="item">
+              <div class="remove"><i class="fa fa-times"></i></div>
+              <div class="input"><input type="text" class="profile label" value="" placeholder="Profile" /></div>
+              <div class="input"><input type="text" class="url" value="" placeholder="URL" /></div>
+            </div>
+            
+            <div class="add">
+            </div>
+            
+          </div>
+          
+          
+        </div>
+        
+      </div>
+    </div>
+        <input type="hidden" name="_token" value="<%= token %>">
+        <input type="submit" value="Submit">
+      </form>
   </body>
 </html>

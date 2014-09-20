@@ -68,8 +68,10 @@ var csrfExclude = ['/url1', '/url2'];
  */
 
 app.set('port', process.env.PORT || 3000);
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
 app.use(compress());
 app.use(connectAssets({
   paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/js')],
@@ -137,7 +139,8 @@ app.post('/account/delete', passportConf.isAuthenticated, userController.postDel
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 
 //Stuff from our project
-app.get('/creator', creatorController.postResume);
+app.post('/creator', creatorController.postResume);
+app.get('/creator', creatorController.getResume);
 
 /**
  * API examples routes.
