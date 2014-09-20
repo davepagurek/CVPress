@@ -88,16 +88,96 @@ exports.getLinkedin = function(req, res, next) {
 
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
-    res.send($in.formatted-name);
-      /*
+    
+    var _education = [];
+
+    for(var i in $in.educations.values){
+        var element = $in.educations.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _education.push({
+            institution: element.schoolName,
+            area: element.fieldOfStudy,
+            studyType: element.degree,
+            startDate: element.startDate,
+            endDate: element.endDate,
+            gpa: "",
+            activities: element.activities,
+            notes: element.notes,
+            courses: ""
+        });
+    }
+    console.log(_education);
     // Creating resume
     var me = new ResumeModel ({
       basics:{
-        name: $in.formatted-name,
-        email: $in.email-address
-      }
+        name: $in.formattedName,
+        email: $in.emailAddress,
+        phone: $in.phoneNumbers,
+        website: "",
+        location: "",
+        label: "",
+        picture: "",
+        gender: "",
+        picture: "",
+        profiles: [{
+          network: "",
+          username: "",
+          url: ""
+        }]
+      },
+    work: [{
+        company: "",
+        position: "",
+        website: "",
+        startDate: "",
+        endDate: "",
+        summary: "",
+        highlights: ""
+      }],
+    volunteer: [{
+        organization: "",
+        position: "",
+        website: "",
+        startDate: "",
+        endDate: "",
+        summary: "",
+        highlights: ""
+      }],
+    education: _education,
+    awards: [{
+        title: "",
+        date: "",
+        awarder: "",
+        summary: ""
+      }],
+    publications: [{
+        name: "",
+        publisher: "",
+        releaseDate: "",
+        website: "",
+        summary: ""
+      }],
+    skills: [{
+        name: "",
+        level: "",
+        keywords: ""
+      }],
+    languages: [{
+        language: "",
+        fluency: ""
+      }],
+    interests: [{
+        name: "",
+        keywords: ""
+      }],
+    references: [{
+        name: "",
+        reference: ""
+      }]
     });
-
+      res.send(me);
+/*
       
     res.render('api/linkedin', {
       title: 'LinkedIn API',

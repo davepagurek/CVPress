@@ -42,8 +42,10 @@ var resumeSchema = new mongoose.Schema({
     studyType: { type: String, default: '' },
     startDate: { type: String, default: '' },
     endDate: { type: String, default: '' },
-    gpa: { type: String, default: '' },
-    courses: { type: String, default: '' }
+    gpa: { types: String, default: '' },
+    courses: { type: String, default: '' },
+    activities: { type: String, default: '' },
+    notes: { type: String, default: '' },
   }],
  awards: [{
     title: { type: String, default: '' },
