@@ -160,6 +160,50 @@ var FormManager = (function() {
       }
     }, f.element("work"));
     
+    volunteer = new ItemsList("item object", {
+      "organization": "CVPress",
+      "position": "Developer",
+      "website": "www.google.com",
+      "startDate": "September 19, 2014",
+      "endDate": "September 21, 2014",
+      "summary": "A resume creation tool"
+    }, {
+      "organization": "Organization",
+      "position": "Position",
+      "website": "Website",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "summary": "Summary"
+    }, {
+      "bulletList": {
+        "property": "highlights",
+        "header": "Highlights",
+        "placeholder": "Cool skill used"
+      }
+    }, f.element("volunteer"));
+    
+    education = new ItemsList("item object", {
+      "institution": "University of Waterloo",
+      "area": "Software Engineering",
+      "studyType": "Post-Secondary",
+      "startDate": "September 2014",
+      "endDate": "May 2019",
+      "gpa": "100%",
+    }, {
+      "institution": "Institution",
+      "area": "Area",
+      "studyType": "Study Type",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "gpa": "GPA",
+    }, {
+      "bulletList": {
+        "property": "courses",
+        "header": "Courses",
+        "placeholder": "Linear Algebra for Engineering"
+      }
+    }, f.element("education"));
+    
     
     //Fill forms
     if (json.basics) {
