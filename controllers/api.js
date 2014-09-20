@@ -147,9 +147,8 @@ exports.getLinkedin = function(req, res, next) {
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
 
-    var ResumeModel = mongoose.model('Resume', resumeSchema);
     // Creating one user.
-    var me = new ResumeModel ({
+    var me = new resumeSchema ({
       basics:{
         name:$in.formatted-name,
         email:$in.email-address
