@@ -1,3 +1,6 @@
+//SET TO TRUE ON DEPLOYMENT
+var PRODUCTION = true;
+
 /**
  * Module dependencies.
  */
@@ -49,8 +52,13 @@ var app = express();
 /**
  * Connect to MongoDB.
  */
+if(PRODUCTION){
+    mongoose.connect("mongodb://cvpress:cvpress@ds039000.mongolab.com:39000/heroku_app29779563");
+    //cvpress / cvpress
+}else{
+    mongoose.connect(secrets.db);
+}
 
-mongoose.connect(secrets.db);
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Make sure MongoDB is running.');
 });
