@@ -111,14 +111,3 @@ exports.getResume = function(req, res) {
     //var me = new ResumeModel ();
   res.send("Hello World! I am going crazy help.");
 };
-
-exports.getFacebook = function(req, res) {
-    var ResumeModel = mongoose.model('Resume', resumeSchema);
-
-    // Creating one user.
-    var me = new ResumeModel ();
-  res.render('contact', {
-    title: 'Contact'
-  });
-};
-

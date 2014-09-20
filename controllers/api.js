@@ -1,24 +1,16 @@
 var secrets = require('../config/secrets');
 var User = require('../models/User');
+var ResumeModel = require('../models/Resume');
 var querystring = require('querystring');
 var validator = require('validator');
 var async = require('async');
 var cheerio = require('cheerio');
 var request = require('request');
 var graph = require('fbgraph');
-var LastFmNode = require('lastfm').LastFmNode;
-var tumblr = require('tumblr.js');
-var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
 var Github = require('github-api');
-var Twit = require('twit');
-var stripe =  require('stripe')(secrets.stripe.apiKey);
-var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
 var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
-var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
-var ig = require('instagram-node').instagram();
 var Y = require('yui/yql');
 var _ = require('lodash');
-var ResumeModel = require('../models/Resume');
 
 
 /**
@@ -84,55 +76,6 @@ exports.getGithub = function(req, res) {
   });
 
 };
-/**
- * GET /api/twitter
- * Twiter API example.
- */
-
-exports.getTwitter = function(req, res, next) {
-  var token = _.find(req.user.tokens, { kind: 'twitter' });
-  var T = new Twit({
-    consumer_key: secrets.twitter.consumerKey,
-    consumer_secret: secrets.twitter.consumerSecret,
-    access_token: token.accessToken,
-    access_token_secret: token.tokenSecret
-  });
-  T.get('search/tweets', { q: 'nodejs since:2013-01-01', geocode: '40.71448,-74.00598,5mi', count: 10 }, function(err, reply) {
-    if (err) return next(err);
-    res.render('api/twitter', {
-      title: 'Twitter API',
-      tweets: reply.statuses
-    });
-  });
-};
-
-/**
- * POST /api/twitter
- * @param tweet
- */
-
-exports.postTwitter = function(req, res, next) {
-  req.assert('tweet', 'Tweet cannot be empty.').notEmpty();
-
-  var errors = req.validationErrors();
-
-  if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/api/twitter');
-  }
-
-  var token = _.find(req.user.tokens, { kind: 'twitter' });
-  var T = new Twit({
-    consumer_key: secrets.twitter.consumerKey,
-    consumer_secret: secrets.twitter.consumerSecret,
-    access_token: token.accessToken,
-    access_token_secret: token.tokenSecret
-  });
-  T.post('statuses/update', { status: req.body.tweet }, function(err, data, response) {
-    req.flash('success', { msg: 'Tweet has been posted.'});
-    res.redirect('/api/twitter');
-  });
-};
 
 /**
  * GET /api/linkedin
@@ -145,16 +88,17 @@ exports.getLinkedin = function(req, res, next) {
 
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
-
-    // Creating one user.
+    res.send($in.formatted-name);
+      /*
+    // Creating resume
     var me = new ResumeModel ({
       basics:{
-        name:$in.formatted-name,
-        email:$in.email-address
+        name: $in.formatted-name,
+        email: $in.email-address
       }
     });
-    res.send(me);
-      /*
+
+      
     res.render('api/linkedin', {
       title: 'LinkedIn API',
       profile: $in
