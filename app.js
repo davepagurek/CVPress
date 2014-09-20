@@ -54,9 +54,27 @@ var app = express();
  */
 if(PRODUCTION){
     mongoose.connect("mongodb://cvpress:cvpress@ds039000.mongolab.com:39000/heroku_app29779563");
+    app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: secrets.sessionSecret,
+  store: new MongoStore({
+    url: "mongodb://cvpress:cvpress@ds039000.mongolab.com:39000/heroku_app29779563",
+    auto_reconnect: true
+  })
+}));
     //cvpress / cvpress
 }else{
     mongoose.connect(secrets.db);
+    app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: secrets.sessionSecret,
+  store: new MongoStore({
+    url: secrets.db,
+    auto_reconnect: true
+  })
+}));
 }
 
 mongoose.connection.on('error', function() {
@@ -92,15 +110,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: secrets.sessionSecret,
-  store: new MongoStore({
-    url: secrets.db,
-    auto_reconnect: true
-  })
-}));
 
 app.use(bodyParser());
 
