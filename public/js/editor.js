@@ -11,11 +11,16 @@ window.addEventListener("load", function() {
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       console.log(xmlhttp.responseText);
+    } else {
+      xmlhttp.open("GET","/auth/linkedin",true);
+      xmlhttp.send();
     }
   };
   
-  xmlhttp.open("GET","/auth/linkedin",true);
-  xmlhttp.send();
+  document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
+    xmlhttp.open("GET","/api/linkedin",true);
+    xmlhttp.send();
+  });
   
   FormManager.init({});
   
