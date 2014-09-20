@@ -18,8 +18,7 @@ var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
 var ig = require('instagram-node').instagram();
 var Y = require('yui/yql');
 var _ = require('lodash');
-var resumeSchema = require('../models/Resume');
-var mongoose = require('mongoose');
+var ResumeModel = require('../models/Resume');
 
 
 /**
@@ -148,7 +147,7 @@ exports.getLinkedin = function(req, res, next) {
     if (err) return next(err);
 
     // Creating one user.
-    var me = new resumeSchema ({
+    var me = new ResumeModel ({
       basics:{
         name:$in.formatted-name,
         email:$in.email-address
