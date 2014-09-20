@@ -4,7 +4,5 @@
  */
 
 exports.index = function(req, res) {
-  res.render('home', {
-    title: 'Home'
-  });
+  res.sendfile('public/index.html');
 };
