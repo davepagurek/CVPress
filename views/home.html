@@ -1,7 +1,8 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/FormManager.js"></script>
   </head>
   <body>
     <div id="menu">
@@ -12,52 +13,72 @@
       </div>
     </div>
     <form name="input" action="/creator" method="post">
-    <div class="wrapper">
-      <div id="resume">
-        <input type="text" name="name" id="name" value="" class="h1" placeholder="John Doe" />
-        
-        <div id="contact" class="section">
-          
-          <h2>Contact</h2>
-          
-          <div class="input labeled">
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" value="" placeholder="johndoe@gmail.com" />
-          </div>
-          
-          <div class="input labeled">
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" value="" placeholder="(555) 555-5555" />
-          </div>
-          
-          
-          <div id="profiles" class="subsection">
-            <h3>Profiles</h3>
+      <div class="wrapper">
+        <div id="resume">
+          <input type="text" name="name" id="name" value="" class="h1" placeholder="John Doe" />
+
+          <div id="contact" class="section">
+
+            <h2>Contact</h2>
             
-            <div class="item">
-              <div class="remove"><i class="fa fa-times"></i></div>
-              <div class="input"><input type="text" class="profile label" value="" placeholder="Profile" /></div>
-              <div class="input"><input type="text" class="url" value="" placeholder="URL" /></div>
+            <div class="half">
+              <div class="input labeled">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" value="" placeholder="johndoe@gmail.com" />
+              </div>
+
+              <div class="input labeled">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" value="" placeholder="(555) 555-5555" />
+              </div>
+
+              <div class="input labeled">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" value="" placeholder="johndoe.com" />
+              </div>
             </div>
             
-            <div class="item">
-              <div class="remove"><i class="fa fa-times"></i></div>
-              <div class="input"><input type="text" class="profile label" value="" placeholder="Profile" /></div>
-              <div class="input"><input type="text" class="url" value="" placeholder="URL" /></div>
+            <div class="half">
+              <div class="input labeled">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" value="" placeholder="123 Streat Rd" />
+              </div>
+              
+              <div class="input labeled">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" id="postalCode" name="postalCode" value="" placeholder="1A1 A1A" />
+              </div>
+              
+              <div class="input labeled">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="" placeholder="Waterloo, ON, Canada" />
+              </div>
             </div>
+
+            <div id="profiles" class="subsection">
+              <h3>Profiles</h3>
+              
+              <div class="add">
+                +
+              </div>
+
+            </div>
+
+          </div>
+          
+          <div id="work" class="section">
+            <h2>Work</h2>
             
             <div class="add">
+              +
             </div>
-            
           </div>
           
-          
+          <input type="hidden" name="_token" value="<%= token %>">
+          <input type="submit" value="Save .JSON">
+
         </div>
-        
       </div>
-    </div>
-        <input type="hidden" name="_token" value="<%= token %>">
-        <input type="submit" value="Submit">
-      </form>
+    </form>
   </body>
 </html>

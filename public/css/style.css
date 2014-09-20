@@ -49,7 +49,6 @@ body {
 
 
 /* Form UI */
-
 .section {
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
@@ -59,6 +58,12 @@ body {
   padding:20px;
   border-left: 2px solid #FFF;
   margin-top:20px;
+}
+
+.half {
+  width:49%;
+  display:inline-block;
+  vertical-align: top;
 }
 
 .section:hover {
@@ -76,6 +81,7 @@ body {
   margin-right:20px;
   display:inline-block;
   position:relative;
+  vertical-align:middle;
 }
 
 .item:hover {
@@ -100,6 +106,28 @@ body {
 }
 
 .item:hover .remove:hover {
+  color:#000;
+}
+
+.add {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  color:#FFF;
+  font-size: 50px;
+  display:inline-block;
+  vertical-align:middle;
+  padding:25px;
+  cursor:default;
+}
+
+.section:hover .add {
+  color:#CCC;
+}
+
+.section:hover .add:hover {
   color:#000;
 }
 
@@ -143,7 +171,7 @@ input[type="text"]:focus {
   font-style: italic;
   color: #888;
   font-size:14px;
-  width:70px;
+  width:90px;
   margin-right:20px;
 }
 
@@ -161,9 +189,40 @@ input[type="text"]:focus {
    font-style: italic;
  }
 
+.deleting {
+  opacity:0;
+}
+
+
+/* Button styles */
+input[type="submit"] {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  background-color:#3c779a;
+  color:#FFF;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  padding:10px;
+  border:0;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color:#5d97b9;
+}
+
 
 
 /* Specific form section styles */
+#resume input[type="submit"] {
+  margin:20px auto;
+  font-size:20px;
+  display:block;
+  padding:20px;
+}
 
 h2 {
   font-size: 25px;
