@@ -207,9 +207,9 @@ exports.getLinkedin = function(req, res, next) {
         gender: "",
         picture: "",
         profiles: [{
-          network: "",
+          network: "LinkedIn",
           username: "",
-          url: ""
+          url: $in.publicProfileUrl
         }]
       },
     work: _work,
