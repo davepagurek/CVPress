@@ -1,7 +1,7 @@
 //Controller for the resume creation workflow
 var secrets = require('../config/secrets');
 var User = require('../models/User');
-var Resume = require('../models/Resume');
+var resumeSchema = require('../models/Resume');
 
 /**
  * GET /creator

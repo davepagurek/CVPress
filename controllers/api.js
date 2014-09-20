@@ -18,6 +18,9 @@ var clockwork = require('clockwork')({key: secrets.clockwork.apiKey});
 var ig = require('instagram-node').instagram();
 var Y = require('yui/yql');
 var _ = require('lodash');
+var resumeSchema = require('../models/Resume');
+var mongoose = require('mongoose');
+
 
 /**
  * GET /api
@@ -110,7 +113,17 @@ exports.getFacebook = function(req, res, next) {
   },
   function(err, results) {
     if (err) return next(err);
-    res.send(results.getMe);
+    var ResumeModel = mongoose.model('Resume', resumeSchema);
+    var response = results.getMe;
+    // Creating one user.
+    var me = new ResumeModel ({
+      basics:{
+        name:response.first_name,
+        email:response.email
+      }
+    });
+
+    res.send(me);
   });
 };
 
