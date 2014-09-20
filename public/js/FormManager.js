@@ -1,7 +1,40 @@
 var FormManager = (function() {
   
   //Classes
-  function ItemsList(className, defaults, labels, container, add) {
+  function BulletList(list, placeholder) {
+    var add;
+    
+    var removeItem = function(evt) {
+      var item = this.parentNode;
+      item.classList.add("deleting");
+
+      var timer = setTimeout(function() {
+        list.removeChild(item);
+      }, 420);
+    };
+    
+    this.addItem = function(str) {
+      list.removeChild(add);
+      
+      list.innerHTML+='<li>\
+                       &bull; <input type="text" value="' + (str?str:"") + '" placeholder="' + (placeholder?placeholder:"") + '" />\
+                       <div class="remove"><i class="fa fa-times"></i></div>\
+                       </li>';
+      
+      list.getElementsByClassName("remove")[list.getElementsByClassName("remove").length-1].addEventListener("click", removeItem);
+      
+      list.appendChild(add);
+    }
+    
+    list.innerHTML += '<ul class="add">+</ul>';
+    add = list.getElementsByClassName("add")[0];
+    add.addEventListener("click", function() {
+      this.addItem();
+    }.bind(this));
+    
+  }
+  
+  function ItemsList(className, defaults, labels, extras, container, add) {
     var removeItem = function(evt) {
       var item = this.parentNode;
       item.classList.add("deleting");
@@ -22,17 +55,46 @@ var FormManager = (function() {
 
       itemDiv.innerHTML += '<div class="remove"><i class="fa fa-times"></i></div>';
       
+      var section = (extras ? document.createElement("div") : itemDiv);
+      if (extras) {
+        section.classList.add("half");
+        itemDiv.appendChild(section);
+      }
+      
       for (var key in defaults) {
         if (defaults.hasOwnProperty(key)) {
           if (className.indexOf("object") != -1) {
-            itemDiv.innerHTML += '<div class="input labeled">\
-                                  <label for="' + key + '">' + (labels.hasOwnProperty(key)?labels[key]:"") + '</label>\
-                                  <input type="text" id="' + key + '" name="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" />\
+            section.innerHTML += '<div class="input labeled">\
+                                  <label>' + (labels.hasOwnProperty(key)?labels[key]:"") + '</label>\
+                                  <input type="text" class="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" />\
                                   </div>';
           } else {
-            itemDiv.innerHTML += '<div class="input"><input type="text" class="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" /></div>';
+            section.innerHTML += '<div class="input"><input type="text" class="' + key + '" value="' + (item.hasOwnProperty(key)?item[key]:"") + '" placeholder="' + defaults[key] + '" /></div>';
           }
         }
+      }
+      
+      if (extras) {
+        var section2 = document.createElement("div");
+        section2.classList.add("half");
+        itemDiv.appendChild(section);
+        
+        for (var key in extras) {
+          if (key=="bulletList") {
+            section2.innerHTML += '<h3>' + extras[key]["header"] + '</h3>';
+            
+            var listUl = document.createElement("ul");
+            var list = new BulletList(listUl, extras["bulletList"]["placeholder"]);
+            
+            if (item.hasOwnProperty(extras["bulletList"]["property"])) {
+              item[extras["bulletList"]["property"]].forEach(list.addItem);
+            }
+            
+            section2.appendChild(listUl);
+          }
+        }
+        
+        itemDiv.appendChild(section2);
       }
       
       itemDiv.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
@@ -66,7 +128,7 @@ var FormManager = (function() {
     profiles = new ItemsList("item", {
       "network": "Network",
       "url": "URL"
-    }, {}, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
+    }, {}, {}, f.element("profiles"), f.element("profiles").getElementsByClassName("add")[0]);
     
     work = new ItemsList("item object", {
       "company": "CVPress",
@@ -82,6 +144,12 @@ var FormManager = (function() {
       "startDate": "Start date",
       "endDate": "End date",
       "summary": "Summary"
+    }, {
+      "bulletList": {
+        "property": "highlights",
+        "header": "Highlights",
+        "placeholder": "Cool skill used"
+      }
     }, f.element("work"), f.element("work").getElementsByClassName("add")[0]);
     
     
