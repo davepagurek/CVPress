@@ -312,7 +312,7 @@ input[type="button"]:hover, a.button:hover {
 
 
 /* Specific form section styles */
-#resume input[type="submit"] {
+#resume input[type="button"] {
   margin:20px auto;
   font-size:20px;
   display:block;

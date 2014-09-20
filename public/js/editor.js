@@ -35,7 +35,8 @@ window.addEventListener("load", function() {
   });
   
   document.getElementById("save").addEventListener("click", function() {
-    console.log(FormManager.makeJSON());
+    document.getElementById("json").value = JSON.stringify(FormManager.makeJSON());
+    document.getElementsByTagName("form")[0].submit();
   });
   
   

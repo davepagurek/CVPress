@@ -17,6 +17,7 @@ var FormManager = (function() {
       list.removeChild(add);
       
       var li = document.createElement("li");
+      li.className = "liInput";
       
       li.innerHTML+='&bull; <input type="text" value="' + (str?str:"") + '" placeholder="' + (placeholder?placeholder:"") + '" />\
                      <div class="remove"><i class="fa fa-times"></i></div>';
@@ -26,7 +27,15 @@ var FormManager = (function() {
       li.getElementsByClassName("remove")[0].addEventListener("click", removeItem);
       
       list.appendChild(add);
-    }
+    };
+    
+    this.makeJSON = function() {
+      var j = [];
+      Array.prototype.forEach.call(list.getElementsByClassName("itemsInput"), function (element) {
+        j.push(element.getElementsByTagName("input")[0].value);
+      });
+      return j;
+    };
     
     list.innerHTML += '<li class="add">+ <span>Add new</span></li>';
     add = list.getElementsByClassName("add")[0];
@@ -40,6 +49,8 @@ var FormManager = (function() {
     var add = document.createElement("div");
     add.classList.add("add");
     add.innerHTML = "+";
+    
+    var sections = [];
     
     var removeItem = function(evt) {
       var item = this.parentNode;
@@ -90,12 +101,14 @@ var FormManager = (function() {
             section2.innerHTML += '<h3>' + extras[key]["header"] + '</h3>';
             
             var listUl = document.createElement("ul");
+            listUl.className = extras["bulletList"]["property"];
             var list = new BulletList(listUl, extras["bulletList"]["placeholder"]);
             
             if (item.hasOwnProperty(extras["bulletList"]["property"])) {
               item[extras["bulletList"]["property"]].forEach(list.addItem);
             }
             
+            sections[extras["bulletList"]["property"]] = list;
             section2.appendChild(listUl);
           }
         }
@@ -107,6 +120,21 @@ var FormManager = (function() {
 
       container.appendChild(itemDiv);
       container.appendChild(add);
+    };
+    
+    this.makeJSON = function() {
+      var j = {};
+      Array.prototype.forEach.call(container.getElementsByClassName("input"), function (element) {
+        var inp = element.getElementsByTagName("input")[0];
+        j[inp.className] = inp.value;
+      });
+      
+      if (sections) {
+        for (var key in sections) {
+          j[key] = sections[key].makeJSON();
+        }
+      }
+      return j;
     };
 
     add.addEventListener("click", function() {
@@ -131,13 +159,17 @@ var FormManager = (function() {
   f.makeJSON = function() {
     var j = {
       "basic": {
-        /*"name": f.element("name").value,
+        "name": f.element("name").value,
         "email": f.element("email").value,
         "phone": f.element("phone").value,
         "website": f.element("website").value,
         "profiles": profiles.makeJSON(),
-        "location": 
-      }*/
+        "location": f.element("location").value
+      },
+      "work": work.makeJSON(),
+      "volunteer": volunteer.makeJSON(),
+      "education": education.makeJSON(),
+      "awards": awards.makeJSON()
     };
     
     return j;
