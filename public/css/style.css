@@ -1,0 +1,136 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300);
+
+
+
+/* Page styles */
+
+body {
+  margin:0;
+  padding:0;
+  background-color:#FFF;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#menu {
+  height: 50px;
+  line-height: 50px;
+  background-color:#FFF;
+  padding:15px;
+}
+
+#menu h1 {
+  margin:0;
+  padding:0;
+}
+
+#menu h1 a {
+  font-family: 'Arvo', serif;
+  font-weight: normal;
+  text-decoration: none;
+  color:#999;
+  font-size:30px;
+}
+
+.wrapper {
+  width:1000px;
+  margin: 0 auto;
+}
+
+#resume {
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(150, 150, 150, 0.75);
+  -moz-box-shadow:    0px 0px 20px 0px rgba(150, 150, 150, 0.75);
+  box-shadow:         0px 0px 20px 0px rgba(150, 150, 150, 0.75);
+  padding: 40px;
+  background-color:#FFF;
+  margin-top:20px;
+}
+
+
+
+/* Form UI */
+
+.section {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  padding:20px;
+  border-left: 2px solid #FFF;
+  margin-top:20px;
+}
+
+.section:hover {
+  border-left: 2px solid #DDD;
+}
+
+input {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none;
+}
+
+input[type="text"] {
+  font-family: 'Open Sans', sans-serif;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:2px solid #FFF;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  padding:10px 10px 8px 10px;
+  background-color:#FFF;
+  display:block;
+}
+
+input[type="text"]:hover {
+  border-bottom: 2px solid #DDD;
+}
+
+input[type="text"]:focus {
+  border-bottom: 2px solid #a1bac9;
+}
+
+.input label {
+  display:inline-block;
+  font-weight:lighter;
+  font-style: italic;
+  color: #888;
+  font-size:14px;
+  width:70px;
+  margin-right:20px;
+}
+
+.input input {
+  display:inline-block;
+  font-size: 14px;
+}
+
+.input {
+  margin-bottom:10px;
+}
+
+
+
+/* Specific form section styles */
+
+h2 {
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+input.h1 {
+  font-size: 38px;
+  width:70%;
+  margin:0 auto;
+  text-align:center;
+  font-family: 'Arvo', serif;
+}
