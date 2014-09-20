@@ -1,5 +1,5 @@
 //SET TO TRUE ON DEPLOYMENT
-var PRODUCTION = false;
+var PRODUCTION = true;
 
 /**
  * Module dependencies.

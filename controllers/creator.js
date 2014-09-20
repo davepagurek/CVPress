@@ -99,7 +99,7 @@ exports.postResume = function(req, res) {
             reference: ""
           }]
     });
-    me.save(function (err) {if (err) console.log ('Error on save!')});
+    me.save(function (err) {if (err) console.log ('Error on save!' + err)});
     //res.send(201, null);
   res.redirect("creator/"+me.id);
 };
