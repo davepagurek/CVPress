@@ -1,5 +1,5 @@
 //SET TO TRUE ON DEPLOYMENT
-var PRODUCTION = true;
+var PRODUCTION = false;
 
 /**
  * Module dependencies.
@@ -164,6 +164,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 //Stuff from our project
 app.post('/creator', creatorController.postResume);
 app.get('/creator', creatorController.getResume);
+app.get('/creator/:resumeID', creatorController.getResumeByID);
 
 /**
  * API examples routes.

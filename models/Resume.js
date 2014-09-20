@@ -85,6 +85,7 @@ var resumeSchema = new mongoose.Schema({
 
 resumeSchema.pre('save', function(next) {
   var resume = this;
+    next();
 });
 
 

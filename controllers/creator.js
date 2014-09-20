@@ -14,6 +14,7 @@ var graph = require('fbgraph');
 var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
 var Y = require('yui/yql');
 var _ = require('lodash');
+var mongoose = require('mongoose');
 
 /**
  * POST /creator
@@ -100,7 +101,7 @@ exports.postResume = function(req, res) {
     });
     me.save(function (err) {if (err) console.log ('Error on save!')});
     //res.send(201, null);
-  res.send(me);
+  res.redirect("creator/"+me.id);
 };
 
 exports.getResume = function(req, res) {
@@ -108,5 +109,21 @@ exports.getResume = function(req, res) {
 
     // Creating one user.
     //var me = new ResumeModel ();
-  res.send("Hello World! I am going crazy help.");
+  res.send("What are you doing here.");
 };
+
+//Find resume by ID
+exports.getResumeByID = function(req, res) {
+    var mId = req.params.resumeID;
+    ResumeModel.findOne({id:mId}).exec(function(err, result) {
+      if (result) {
+         // handle result
+        res.send(result);
+      } else {
+        // error handling
+          res.send("Nothing!");
+      };
+    });
+  
+};
+
