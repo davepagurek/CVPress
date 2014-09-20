@@ -89,6 +89,9 @@ exports.getLinkedin = function(req, res, next) {
   linkedin.people.me(function(err, $in) {
     if (err) return next(err);
     
+    /*
+     * PARSE EDUCATION DATA FROM LINKEDIN API
+     */
     var _education = [];
 
     for(var i in $in.educations.values){
@@ -107,7 +110,61 @@ exports.getLinkedin = function(req, res, next) {
             courses: ""
         });
     }
-    console.log(_education);
+    /*
+     * PARSE WORK DATA FROM LINKEDIN API
+     */
+    var _work = [];
+
+    for(var i in $in.positions.values){
+        var element = $in.positions.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _work.push({
+            company: element.company.name,
+            position: element.title,
+            website: "",
+            startDate: element.startDate,
+            endDate: element.endDate,
+            summary: "",
+            highlights: ""
+        });
+    }
+    /*
+     * PARSE AWARD DATA FROM LINKEDIN API
+     */
+    var _award = [];
+
+    for(var i in $in.honorsAwards.values){
+        var element = $in.honorsAwards.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _award.push({
+            title: element.name,
+            date: "",
+            awarder: element.issuer,
+            summary: ""
+        });
+    }
+    /*
+     * PARSE VOLUNTEER DATA FROM LINKEDIN API
+     */
+    var _volunteer = [];
+
+    for(var i in $in.volunteer.volunteerExperiences.values){
+        var element = $in.volunteer.volunteerExperiences.values[i];
+        //console.log(element);
+        //format each education element from linkedin
+        _volunteer.push({
+            organization: element.organization.name,
+            position: element.role,
+            website: "",
+            startDate: "",
+            endDate: "",
+            summary: "",
+            highlights: ""
+        });
+    }
+    //console.log(_education);
     // Creating resume
     var me = new ResumeModel ({
       basics:{
@@ -126,31 +183,10 @@ exports.getLinkedin = function(req, res, next) {
           url: ""
         }]
       },
-    work: [{
-        company: "",
-        position: "",
-        website: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
-        highlights: ""
-      }],
-    volunteer: [{
-        organization: "",
-        position: "",
-        website: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
-        highlights: ""
-      }],
+    work: _work,
+    volunteer: _volunteer,
     education: _education,
-    awards: [{
-        title: "",
-        date: "",
-        awarder: "",
-        summary: ""
-      }],
+    awards: _award,
     publications: [{
         name: "",
         publisher: "",
