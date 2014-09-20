@@ -21,6 +21,8 @@ var passport = require('passport');
 var expressValidator = require('express-validator');
 var connectAssets = require('connect-assets');
 
+var bodyParser = require('body-parser');
+
 /**
  * Controllers (route handlers).
  */
@@ -66,7 +68,6 @@ var csrfExclude = ['/url1', '/url2'];
 /**
  * Express configuration.
  */
-
 app.set('port', process.env.PORT || 3000);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -92,14 +93,17 @@ app.use(session({
     auto_reconnect: true
   })
 }));
+
+app.use(bodyParser());
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(function(req, res, next) {
+/* app.use(function(req, res, next) {
   // CSRF protection.
   if (_.contains(csrfExclude, req.path)) return next();
   csrf(req, res, next);
-});
+}); */
 app.use(function(req, res, next) {
   // Make user object available in templates.
   res.locals.user = req.user;
