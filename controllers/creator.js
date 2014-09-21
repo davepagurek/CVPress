@@ -112,22 +112,22 @@ exports.getResume = function(req, res) {
   res.send("What are you doing here.");
 };
 exports.returnResumeByID = function(mId) {
-    var obj = new mongoose.Types.ObjectId(mId);
-    ResumeModel.find({_id:obj}).exec(function(err, result) {
-      if (!err) {
-         // handle result
-        return(result);
-          //console.log("HELLO");
-      } else {
-        // error handling
-        return(err);
-      };
-    }); 
+
   
 };
 //Find resume by ID
 exports.getResumeByID = function(req, res) {
     var mId = req.params.resumeID;
-    res.send(returnResumeByID(mId));
+    var obj = new mongoose.Types.ObjectId(mId);
+    ResumeModel.find({_id:obj}).exec(function(err, result) {
+      if (!err) {
+         // handle result
+        res.send(result);
+      } else {
+        // error handling
+        res.send(err);
+      };
+    }); 
+    
 };
 
