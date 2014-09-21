@@ -44,10 +44,10 @@ window.addEventListener("load", function() {
     }
   });
   
-  document.getElementById("save").addEventListener("click", function() {
+  /*document.getElementById("save").addEventListener("click", function() {
     document.getElementById("json").value = JSON.stringify(FormManager.makeJSON());
     document.getElementById("saveJSON").submit();
-  });
+  });*/
   document.getElementById("exportPDF").addEventListener("click", function() {
     document.getElementById("json2").value = JSON.stringify(FormManager.makeJSON());
     document.getElementById("exportPDFForm").submit();
