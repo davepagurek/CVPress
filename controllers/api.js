@@ -87,7 +87,10 @@ exports.getLinkedin = function(req, res, next) {
   var linkedin = Linkedin.init(token.accessToken);
 
   linkedin.people.me(function(err, $in) {
-    if (err) res.send('{"error":"Auth Problem"}');//return next(err);
+    if (err) {
+      res.send('{"error":"Auth Problem"}');//return next(err);
+      return;
+    }
     console.log($in);
     /*
      * PARSE EDUCATION DATA FROM LINKEDIN API
