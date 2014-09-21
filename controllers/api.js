@@ -252,12 +252,12 @@ exports.getLinkedin = function(req, res, next) {
         reference: ""
       }]
     });
-    res.send(me);
-/*
+    //res.send(me);
+
       
     res.render('api/linkedin', {
       title: 'LinkedIn API',
       profile: $in
-    }); */
+    }); 
   });
 };
