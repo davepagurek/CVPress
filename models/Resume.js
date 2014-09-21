@@ -7,6 +7,7 @@ var resumeSchema = new mongoose.Schema({
     email: { type: String, default: '' },
     phone: { type: String, default: '' },
     website: { type: String, default: '' },
+    picture: { type: String, default: '' },
     location: { type: String, default: '' },
     label: { type: String, default: '' },
     picture: { type: String, default: '' },

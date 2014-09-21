@@ -1,5 +1,3 @@
-
-
 window.addEventListener("load", function() {
   var attempts=0;
   var xmlhttp;
@@ -19,11 +17,21 @@ window.addEventListener("load", function() {
     }
   };
   
-  document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
+  var checkLinkedIn = function() {
     xmlhttp.open("GET","/api/linkedin",true);
     xmlhttp.send();
     attempts=0;
+  };
+  
+  document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
+    checkLinkedIn();
   });
+  
+  if (window.location.hash == "linkedin") {
+      checkLinkedIn();
+  }
+  
+  
   
   FormManager.init({});
   
@@ -36,10 +44,10 @@ window.addEventListener("load", function() {
     }
   });
   
-  document.getElementById("save").addEventListener("click", function() {
+  /*document.getElementById("save").addEventListener("click", function() {
     document.getElementById("json").value = JSON.stringify(FormManager.makeJSON());
     document.getElementById("saveJSON").submit();
-  });
+  });*/
   document.getElementById("exportPDF").addEventListener("click", function() {
     document.getElementById("json2").value = FormManager.makeHTML();
     document.getElementById("exportPDFForm").submit();
