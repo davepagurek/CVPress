@@ -41,7 +41,7 @@ window.addEventListener("load", function() {
     document.getElementById("saveJSON").submit();
   });
   document.getElementById("exportPDF").addEventListener("click", function() {
-    document.getElementById("json2").value = JSON.stringify(FormManager.makeJSON());
+    document.getElementById("json2").value = FormManager.makeHTML();
     document.getElementById("exportPDFForm").submit();
   });
   
