@@ -279,9 +279,9 @@ passport.use(new LinkedInStrategy(secrets.linkedin, function(req, accessToken, r
           user.profile.location = profile._json.location.name;
           user.profile.picture = profile._json.pictureUrl;
           user.profile.website = profile._json.publicProfileUrl;
-          user.save(function(err) {
+          /*user.save(function(err) {
             done(err, user);
-          });
+          });*/
         }
       });
     });
