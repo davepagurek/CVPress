@@ -218,6 +218,10 @@ var FormManager = (function() {
   
   f.makeHTML = function() {
     var h = '<html>\
+<head>\
+<title>' + f.element("name").value + '</title>\
+<link rel="stylesheet" type="text/css" href="/public/exportStyle.css" />\
+</head>\
 <body>\
 <div class="wrapper">\
 <h1>' + f.element("name").value + '</h1>\

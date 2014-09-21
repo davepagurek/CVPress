@@ -37,7 +37,7 @@ var contactController = require('./controllers/contact');
 var creatorController = require('./controllers/creator');
 var privacyController = require('./controllers/home');
 var html2pdfController = require('./controllers/html2pdf');
-var html2htmlController = require('.controllers/html2html');
+var html2htmlController = require('./controllers/html2html');
 
 /**
  * API keys and Passport configuration.
