@@ -222,6 +222,7 @@ var FormManager = (function() {
 <!-- test -->\
 <title>' + f.element("name").value + '</title>\
 <link rel="stylesheet" type="text/css" href="css/exportStyle.css" />\
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,400" rel="stylesheet" type="text/css" />\
 </head>\
 <body>\
 <div class="wrapper">\
