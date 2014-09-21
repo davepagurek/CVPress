@@ -5,8 +5,6 @@ var fs = require('fs');
 
 exports.render = function(req, res) {
   var wkhtmltopdf_path = process.env.PORT ? './bin/wkhtmltopdf-linux-amd64' : 'wkhtmltopdf';
-  // req.body.json2 is the resume as HTML
-  wkhtmltopdf(req.body.json2).pipe(res)
   
   fs.writeFile(path.resolve("public/resume.html"), req.body.json2, function(err) {
     if(err) {
