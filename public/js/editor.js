@@ -53,9 +53,9 @@ window.addEventListener("load", function() {
     document.getElementById("exportPDFForm").submit();
   });
   document.getElementById("exportHTML").addEventListener("click", function() {
-    //document.getElementById("json2").value = JSON.stringify(FormManager.makeJSON());
-    //document.getElementById("exportPDFForm").submit();
-    console.log(FormManager.makeHTML());
+    document.getElementById("html").value = FormManager.makeHTML();
+    document.getElementById("exportHTMLForm").submit();
+//    console.log(FormManager.makeHTML());
   });
   
 });

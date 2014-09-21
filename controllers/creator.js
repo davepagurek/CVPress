@@ -22,7 +22,7 @@ var mongoose = require('mongoose');
  */
 
 exports.postResume = function(req, res) {
-    //var ResumeModel = mongoose.model('Resume', resumeSchema);
+    var ResumeModel = mongoose.model('Resume', resumeSchema);
     // Creating one user.
     var me = new ResumeModel (JSON.parse(req.body.json));
     me.save(function (err) {if (err) console.log ('Error on save!' + err)});
