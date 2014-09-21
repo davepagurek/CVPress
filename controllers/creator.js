@@ -111,21 +111,23 @@ exports.getResume = function(req, res) {
     //var me = new ResumeModel ();
   res.send("What are you doing here.");
 };
-
-//Find resume by ID
-exports.getResumeByID = function(req, res) {
-    var mId = req.params.resumeID;
+exports.returnResumeByID = function(mId) {
     var obj = new mongoose.Types.ObjectId(mId);
     ResumeModel.find({_id:obj}).exec(function(err, result) {
       if (!err) {
          // handle result
-        res.send(result);
+        return(result);
           //console.log("HELLO");
       } else {
         // error handling
-          res.send(err);
+        return(err);
       };
     }); 
   
+};
+//Find resume by ID
+exports.getResumeByID = function(req, res) {
+    var mId = req.params.resumeID;
+    res.send(returnResumeByID(mId));
 };
 
