@@ -213,6 +213,7 @@ exports.getLinkedin = function(req, res, next) {
         name: $in.formattedName,
         email: $in.emailAddress,
         phone: $in.phoneNumbers,
+        picture: $in.pictureUrl,
         website: "",
         location: "",
         label: "",
@@ -247,7 +248,7 @@ exports.getLinkedin = function(req, res, next) {
         reference: ""
       }]
     });
-      res.redirect("/?linkedin=true");
+      res.redirect("/#linkedin");
 /*
       
     res.render('api/linkedin', {
