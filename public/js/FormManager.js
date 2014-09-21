@@ -37,6 +37,16 @@ var FormManager = (function() {
       return j;
     };
     
+    this.makeHTML = function() {
+      var h = "<ul>";
+      Array.prototype.forEach.call(list.getElementsByClassName("itemsInput"), function (element) {
+        h += "<li>" + element.getElementsByTagName("input")[0].value + "</li>";
+      });
+      h += "</ul>";
+      return h;
+    };
+    
+    list.innerHTML = "";
     list.innerHTML += '<li class="add">+ <span>Add new</span></li>';
     add = list.getElementsByClassName("add")[0];
     add.addEventListener("click", function() {
@@ -104,7 +114,7 @@ var FormManager = (function() {
             listUl.className = extras["bulletList"]["property"];
             var list = new BulletList(listUl, extras["bulletList"]["placeholder"]);
             
-            if (item.hasOwnProperty(extras["bulletList"]["property"])) {
+            if (item.hasOwnProperty(extras["bulletList"]["property"]) && item[extras["bulletList"]["property"]]) {
               item[extras["bulletList"]["property"]].forEach(list.addItem);
             }
             
@@ -136,11 +146,37 @@ var FormManager = (function() {
       }
       return j;
     };
+    
+    this.makeHTML = function() {
+      var h = "";
+      Array.prototype.forEach.call(container.getElementsByClassName("input"), function (element) {
+        var inp = element.getElementsByTagName("input")[0];
+        h += "<p class='" + inp.className + "'>" + inp.value + "</p>";
+      });
+      
+      if (sections) {
+        for (var key in sections) {
+          if (key=="highlights") {
+            h += "<h3>Highlights</h3>";
+          } else if (key=="courses") {
+            h += "<h3>Courses</h3>";
+          }
+          h += sections[key].makeHTML();
+        }
+      }
+      return h;
+    };
 
     add.addEventListener("click", function() {
       this.addItem();
     }.bind(this));
     
+    var h2 = container.getElementsByTagName("h2")[0];
+    if (h2) {
+      container.removeChild(h2);
+      container.innerHTML = "";
+      container.appendChild(h2);
+    }
     container.appendChild(add);
   }
   
@@ -164,8 +200,11 @@ var FormManager = (function() {
         "phone": f.element("phone").value,
         "website": f.element("website").value,
         "profiles": profiles.makeJSON(),
-        "location": f.element("location").value
+        "location": f.element("location").value,
+        "address": f.element("address").value,
+        "postalCode": f.element("postalCode").value
       },
+      "skills": skills.makeJSON(),
       "work": work.makeJSON(),
       "volunteer": volunteer.makeJSON(),
       "education": education.makeJSON(),
@@ -175,7 +214,41 @@ var FormManager = (function() {
     return j;
   };
   
+  f.makeHTML = function() {
+    var h = '<html>\
+<body>\
+<div class="wrapper">\
+<h1>' + f.element("name").value + '</h1>\
+<h2>Contact</h2>\
+<div class="half">\
+<p>' + f.element("email").value + '</p>\
+<p>' + f.element("phone").value + '</p>\
+<p>' + f.element("website").value + '</p>\
+</div>\
+<div class="half">\
+<p>' + f.element("address").value + '</p>\
+<p>' + f.element("postalCode").value + '</p>\
+<p>' + f.element("location").value + '</p>\
+</div>\
+<h2>Skills</h2>\
+' + skills.makeHTML() + '\
+<h2>Work Experience</h2>\
+' + work.makeHTML() + '\
+<h2>Volunteer Experience</h2>\
+' + volunteer.makeHTML() + '\
+<h2>Education</h2>\
+' + education.makeHTML() + '\
+<h2>Awards</h2>\
+' + awards.makeHTML() + '\
+</div>\
+</body>\
+</html>';
+    
+    return h;
+  };
+  
   f.update = function(json) {
+    
     if (json.basics) {
       if (json.basics.name) {
         f.element("name").value = json.basics.name;
