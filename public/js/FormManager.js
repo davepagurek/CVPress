@@ -171,11 +171,11 @@ var FormManager = (function() {
       this.addItem();
     }.bind(this));
     
-    var h2 = container.getElementsByTagName("h2")[0];
-    if (h2) {
-      container.removeChild(h2);
+    var heading = (container.getElementsByTagName("h2").length>0?container.getElementsByTagName("h2")[0]:container.getElementsByTagName("h3")[0]);
+    if (heading) {
+      container.removeChild(heading);
       container.innerHTML = "";
-      container.appendChild(h2);
+      container.appendChild(heading);
     }
     container.appendChild(add);
   }
