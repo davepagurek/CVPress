@@ -353,7 +353,7 @@ passport.use('venmo', new OAuth2Strategy({
 
 exports.isAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.status(401);
+  res.redirect("/nope");
 };
 
 // Authorization Required middleware.
