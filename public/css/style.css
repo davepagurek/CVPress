@@ -34,6 +34,7 @@ body {
   left:0;
   right:0;
   background-color:#FFF;
+  z-index:9001;
 }
 
 .scrolled #menu {
@@ -316,6 +317,16 @@ input[type="button"]:hover, a.button:hover {
 
 
 /* Specific form section styles */
+#exports .button {
+  cursor:pointer;
+  margin:10px;
+}
+
+#exports {
+  text-align:center;
+  margin:40px;
+}
+
 #resume input[type="button"] {
   margin:20px auto;
   font-size:20px;

@@ -171,11 +171,13 @@ var FormManager = (function() {
       this.addItem();
     }.bind(this));
     
-    var heading = (container.getElementsByTagName("h2").length>0?container.getElementsByTagName("h2")[0]:container.getElementsByTagName("h3")[0]);
-    if (heading) {
-      container.removeChild(heading);
-      container.innerHTML = "";
-      container.appendChild(heading);
+    if (container.getElementsByTagName("h2").length>0 || container.getElementsByTagName("h3").length>0) {
+      var heading = (container.getElementsByTagName("h2").length>0?container.getElementsByTagName("h2")[0]:container.getElementsByTagName("h3")[0]);
+      if (heading) {
+        container.removeChild(heading);
+        container.innerHTML = "";
+        container.appendChild(heading);
+      }
     }
     container.appendChild(add);
   }

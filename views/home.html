@@ -1,5 +1,7 @@
+<!doctype html>
 <html>
   <head>
+    <title>CVPress</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script type="text/javascript" src="js/FormManager.js"></script>
@@ -13,8 +15,6 @@
         </h1>
         <div id="right">
           <a class="button" id="importLinkedIn">Import from LinkedIn</a>
-          <a class="button" id="exportPDF">Export PDF</a>
-          <a class="button" id="exportHTML">Export HTML</a>
         </div>
       </div>
     </div>
@@ -88,11 +88,16 @@
         <div id="awards" class="section">
           <h2>Awards</h2>
         </div>
+        
+        <div id="exports">
+          <a class="button" id="exportPDF">Export PDF</a>
+          <a class="button" id="exportHTML">Export HTML</a>
+        </div>
 
         <form name="input" action="/creator" method="post" id="saveJSON">
           <input type="hidden" name="_token" value="<%= token %>" />
           <input type="hidden" name="json" value="" id="json" />
-          <input type="button" value="Save" id="save" />
+          <!--<input type="button" value="Save" id="save" />-->
         </form>
         <form name="exportPDF" action="/html2pdf" method="post" id="exportPDFForm">
           <input type="hidden" name="_token" value="<%= token %>" />
