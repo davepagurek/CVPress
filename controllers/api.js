@@ -89,8 +89,8 @@ exports.getLinkedin = function(req, res, next) {
   linkedin.people.me(function(err, $in) {
     if (err) {
       //res.send('{"error":"Auth Problem"}');
-      //return next(err);
-      res.status(404).send('Not found');
+      return next(err);
+      //res.status(404).send('Not found');
     }
     console.log($in);
     /*
