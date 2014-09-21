@@ -56,6 +56,7 @@
     "twit": "^1.1.18",
     "uglify-js": "^2.4.15",
     "validator": "^3.17.1",
+    "wkhtmltopdf": "^0.1.5",
     "yui": "^3.17.2"
   },
   "devDependencies": {
