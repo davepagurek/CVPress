@@ -17,18 +17,18 @@ window.addEventListener("load", function() {
     }
   };
   
-  var checkLinkedIn = function() {
-    xmlhttp.open("GET","/api/linkedin",true);
+  var checkLinkedIn = function(url) {
+    xmlhttp.open("GET",url,true);
     xmlhttp.send();
     attempts=0;
   };
   
   document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
-    checkLinkedIn();
+    checkLinkedIn("/api/linkedin");
   });
   
   if (window.location.hash == "#linkedin") {
-      checkLinkedIn();
+      checkLinkedIn("/json/linkedin");
   }
   
   

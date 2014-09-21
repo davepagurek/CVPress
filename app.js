@@ -181,6 +181,7 @@ app.get('/api/github', passportConf.isAuthenticated, passportConf.isAuthorized, 
 app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, function(req, res){
   res.redirect("/#linkedin");
 });
+app.get('/json/linkedin', apiController.getLinkedin);
 
 /**
  * OAuth sign-in routes.
