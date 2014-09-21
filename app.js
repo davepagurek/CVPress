@@ -37,6 +37,7 @@ var contactController = require('./controllers/contact');
 var creatorController = require('./controllers/creator');
 var privacyController = require('./controllers/home');
 var html2pdfController = require('./controllers/html2pdf');
+var html2htmlController = require('.controllers/html2html');
 
 /**
  * API keys and Passport configuration.
@@ -167,6 +168,7 @@ app.post('/creator', creatorController.postResume);
 app.get('/creator', creatorController.getResume);
 app.get('/creator/:resumeID', creatorController.getResumeByID);
 app.post('/html2pdf', html2pdfController.render);
+app.post('/html2html', html2htmlController.render);
 
 /**
  * API examples routes.
