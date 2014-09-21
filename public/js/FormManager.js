@@ -175,6 +175,71 @@ var FormManager = (function() {
     return j;
   };
   
+  f.update = function(json) {
+    if (json.basics) {
+      if (json.basics.name) {
+        f.element("name").value = json.basics.name;
+      }
+      if (json.basics.email) {
+        f.element("email").value = json.basics.email;
+      }
+      if (json.basics.phone) {
+        f.element("phone").value = json.basics.phone;
+      }
+      if (json.basics.website) {
+        f.element("website").value = json.basics.website;
+      }
+      if (json.basics.profiles) {
+        json.basics.profiles.forEach(profiles.addItem);
+      } else {
+        profiles.addItem();
+      }
+      if (json.basics.location.address) {
+        f.element("address").value = json.basics.location.address;
+      }
+      if (json.basics.location.postalCode) {
+        f.element("postalCode").value = json.basics.location.postalCode;
+      }
+      if (json.basics.location.location) {
+        f.element("location").value = json.basics.location.location;
+      }
+    } else {
+      profiles.addItem();
+    }
+    
+    if (json.skills) {
+      json.skills.forEach(function(skill) {
+        skills.addItem(skill["name"]);
+      });
+    } else {
+      skills.addItem("");
+    }
+    
+    if (json.work) {
+      json.work.forEach(work.addItem);
+    } else {
+      work.addItem();
+    }
+    
+    if (json.volunteer) {
+      json.volunteer.forEach(volunteer.addItem);
+    } else {
+      volunteer.addItem();
+    }
+    
+    if (json.education) {
+      json.education.forEach(education.addItem);
+    } else {
+      education.addItem();
+    }
+    
+    if (json.awards) {
+      json.awards.forEach(awards.addItem);
+    } else {
+      awards.addItem();
+    }
+  };
+  
   
   
   f.init = function(json) {
@@ -262,66 +327,7 @@ var FormManager = (function() {
     
     
     //Fill forms
-    if (json.basics) {
-      if (json.basics.name) {
-        f.element("name").value = json.basics.name;
-      }
-      if (json.basics.email) {
-        f.element("email").value = json.basics.email;
-      }
-      if (json.basics.phone) {
-        f.element("phone").value = json.basics.phone;
-      }
-      if (json.basics.website) {
-        f.element("website").value = json.basics.website;
-      }
-      if (json.basics.profiles) {
-        json.basics.profiles.forEach(profiles.addItem);
-      } else {
-        profiles.addItem();
-      }
-      if (json.basics.location.address) {
-        f.element("address").value = json.basics.location.address;
-      }
-      if (json.basics.location.postalCode) {
-        f.element("postalCode").value = json.basics.location.postalCode;
-      }
-      if (json.basics.location.location) {
-        f.element("location").value = json.basics.location.location;
-      }
-    }
-    
-    if (json.skills) {
-      json.skills.forEach(function(skill) {
-        skills.addItem(skill["name"]);
-      });
-    } else {
-      skills.addItem("");
-    }
-    
-    if (json.work) {
-      json.work.forEach(work.addItem);
-    } else {
-      work.addItem();
-    }
-    
-    if (json.volunteer) {
-      json.volunteer.forEach(volunteer.addItem);
-    } else {
-      volunteer.addItem();
-    }
-    
-    if (json.education) {
-      json.education.forEach(education.addItem);
-    } else {
-      education.addItem();
-    }
-    
-    if (json.awards) {
-      json.awards.forEach(awards.addItem);
-    } else {
-      awards.addItem();
-    }
+    if (json) f.update(json);
   };
   
   return f;

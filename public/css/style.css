@@ -65,11 +65,15 @@ body {
 
 #menu a.button {
   background-color:#999;
-  cursor:default;
+  cursor:pointer;
 }
 
 #menu a.button:hover {
   background-color:#AAA;
+}
+
+#menu a.button:active {
+  background-color:#777;
 }
 
 #right {

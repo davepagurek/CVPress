@@ -12,6 +12,8 @@ window.addEventListener("load", function() {
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       console.log(xmlhttp.responseText);
+      var json = JSON.parse(xmlhttp.responseText);
+      FormManager.update(json);
     } else if (xmlhttp.readyState==4 && attempts<2) {
       window.location="/auth/linkedin";
     }
