@@ -14,7 +14,6 @@ window.addEventListener("load", function() {
       FormManager.init(json);
     } else if (xmlhttp.readyState==4 && attempts<2) {
       window.location="/auth/linkedin";
-      console.log(xmlhttp);
     }
   };
   
@@ -28,7 +27,7 @@ window.addEventListener("load", function() {
     checkLinkedIn();
   });
   
-  if (window.location.hash == "linkedin") {
+  if (window.location.hash == "#linkedin") {
       checkLinkedIn();
   }
   
