@@ -13,8 +13,8 @@
         </h1>
         <div id="right">
           <a class="button" id="importLinkedIn">Import from LinkedIn</a>
-          <a class="button">Export PDF</a>
-          <a class="button">Export HTML</a>
+          <a class="button" id="exportPDF">Export PDF</a>
+          <a class="button" id="exportHTML">Export HTML</a>
         </div>
       </div>
     </div>
@@ -89,10 +89,14 @@
           <h2>Awards</h2>
         </div>
 
-        <form name="input" action="/creator" method="post">
+        <form name="input" action="/creator" method="post" id="saveJSON">
           <input type="hidden" name="_token" value="<%= token %>" />
           <input type="hidden" name="json" value="" id="json" />
           <input type="button" value="Save" id="save" />
+        </form>
+        <form name="exportPDF" action="/html2pdf" method="post" id="exportPDFForm">
+          <input type="hidden" name="_token" value="<%= token %>" />
+          <input type="hidden" name="json2" value="" id="json2" />
         </form>
       </div>
     </div>
