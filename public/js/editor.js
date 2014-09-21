@@ -23,9 +23,9 @@ window.addEventListener("load", function() {
     attempts=0;
   };
   
-  document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
+  /*document.getElementById("importLinkedIn").addEventListener("click", function(evt) {
     checkLinkedIn("/api/linkedin");
-  });
+  });*/
   
   if (window.location.hash == "#linkedin") {
       checkLinkedIn("/json/linkedin");
