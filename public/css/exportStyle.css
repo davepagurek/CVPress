@@ -1,0 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+
+.wrapper {
+  margin:40px auto;
+  padding:40px;
+  width:900px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  border-bottom: 1px solid #000;
+}
