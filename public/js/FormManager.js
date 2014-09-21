@@ -31,7 +31,7 @@ var FormManager = (function() {
     
     this.makeJSON = function() {
       var j = [];
-      Array.prototype.forEach.call(list.getElementsByClassName("itemsInput"), function (element) {
+      Array.prototype.forEach.call(list.getElementsByClassName("liInput"), function (element) {
         j.push(element.getElementsByTagName("input")[0].value);
       });
       return j;
@@ -39,8 +39,8 @@ var FormManager = (function() {
     
     this.makeHTML = function() {
       var h = "<ul>";
-      Array.prototype.forEach.call(list.getElementsByClassName("itemsInput"), function (element) {
-        h += "<li>" + element.getElementsByTagName("input")[0].value + "</li>";
+      Array.prototype.forEach.call(list.getElementsByClassName("liInput"), function (element) {
+        h += "<li>" + (element.getElementsByTagName("input")[0].value) + "</li>";
       });
       h += "</ul>";
       return h;
@@ -220,7 +220,7 @@ var FormManager = (function() {
     var h = '<html>\
 <head>\
 <title>' + f.element("name").value + '</title>\
-<link rel="stylesheet" type="text/css" href="/public/css/exportStyle.css" />\
+<link rel="stylesheet" type="text/css" href="css/exportStyle.css" />\
 </head>\
 <body>\
 <div class="wrapper">\
