@@ -36,44 +36,11 @@ window.addEventListener("load", function() {
   
   document.getElementById("save").addEventListener("click", function() {
     document.getElementById("json").value = JSON.stringify(FormManager.makeJSON());
-    document.getElementsByTagName("form")[0].submit();
+    document.getElementById("saveJSON").submit();
+  });
+  document.getElementById("exportPDF").addEventListener("click", function() {
+    document.getElementById("json2").value = JSON.stringify(FormManager.makeJSON());
+    document.getElementById("exportPDFForm").submit();
   });
   
-  
-  /*FormManager.init({
-    "basics": {
-      "name": "John Doe",
-      "email": "test@test.com",
-      "phone": "(555) 555-5555",
-      "website": "johndoe.com",
-      "location": {
-        "address": "123 Road Rd.",
-        "postalCode": "1O1 O1O",
-        "location": "Townville, ON, Canada"
-      },
-      "profiles": [{
-          "network": "GitHub",
-          "username": "johndoe",
-          "url": "github.com/johndoe"
-        },
-        {
-          "network": "LinkedIn",
-          "username": "johndoe",
-          "url": "linkedin.com/johndoe"
-        }
-      ]
-    },
-    "work": [{
-      "company": "CVPress",
-      "position": "Developer",
-      "website": "www.google.com",
-      "startDate": "September 19, 2014",
-      "endDate": "September 21, 2014",
-      "summary": "A resume creation tool",
-      "highlights": [
-        "UI design",
-        "Node.js stuff"
-      ]
-    }]
-  });*/
 });
