@@ -178,10 +178,10 @@ app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 app.get('/api/github', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getGithub);
 //app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getLinkedin);
-app.get('/json/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, function(req, res){
+app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, function(req, res){
   res.redirect("/#linkedin");
 });
-app.get('/api/linkedin', apiController.getLinkedin);
+app.get('/json/linkedin', apiController.getLinkedin);
 
 /**
  * OAuth sign-in routes.
