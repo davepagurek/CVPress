@@ -13,7 +13,7 @@ window.addEventListener("load", function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       console.log(xmlhttp.responseText);
       var json = JSON.parse(xmlhttp.responseText);
-      FormManager.update(json);
+      FormManager.init(json);
     } else if (xmlhttp.readyState==4 && attempts<2) {
       window.location="/auth/linkedin";
     }

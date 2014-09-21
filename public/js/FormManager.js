@@ -46,6 +46,7 @@ var FormManager = (function() {
       return h;
     };
     
+    list.innerHTML = "";
     list.innerHTML += '<li class="add">+ <span>Add new</span></li>';
     add = list.getElementsByClassName("add")[0];
     add.addEventListener("click", function() {
@@ -113,7 +114,7 @@ var FormManager = (function() {
             listUl.className = extras["bulletList"]["property"];
             var list = new BulletList(listUl, extras["bulletList"]["placeholder"]);
             
-            if (item.hasOwnProperty(extras["bulletList"]["property"])) {
+            if (item.hasOwnProperty(extras["bulletList"]["property"]) && item[extras["bulletList"]["property"]]) {
               item[extras["bulletList"]["property"]].forEach(list.addItem);
             }
             
@@ -170,6 +171,12 @@ var FormManager = (function() {
       this.addItem();
     }.bind(this));
     
+    var h2 = container.getElementsByTagName("h2")[0];
+    if (h2) {
+      container.removeChild(h2);
+      container.innerHTML = "";
+      container.appendChild(h2);
+    }
     container.appendChild(add);
   }
   
@@ -241,6 +248,7 @@ var FormManager = (function() {
   };
   
   f.update = function(json) {
+    
     if (json.basics) {
       if (json.basics.name) {
         f.element("name").value = json.basics.name;
