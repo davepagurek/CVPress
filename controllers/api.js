@@ -247,7 +247,7 @@ exports.getLinkedin = function(req, res, next) {
         reference: ""
       }]
     });
-      res.send(me);
+      res.redirect("/?linkedin=true");
 /*
       
     res.render('api/linkedin', {
