@@ -93,7 +93,8 @@ exports.getLinkedin = function(req, res, next) {
      * PARSE EDUCATION DATA FROM LINKEDIN API
      */
     var _education = [];
-
+    try{
+    
     for(var i in $in.educations.values){
         var element = $in.educations.values[i];
         //console.log(element);
@@ -109,12 +110,14 @@ exports.getLinkedin = function(req, res, next) {
             notes: element.notes,
             courses: ""
         });
+    }}catch(err){
+        
     }
     /*
      * PARSE WORK DATA FROM LINKEDIN API
      */
     var _work = [];
-
+    try{
     for(var i in $in.positions.values){
         var element = $in.positions.values[i];
         //console.log(element);
@@ -128,12 +131,14 @@ exports.getLinkedin = function(req, res, next) {
             summary: "",
             highlights: ""
         });
+    }}catch(err){
+        
     }
     /*
      * PARSE AWARD DATA FROM LINKEDIN API
      */
     var _award = [];
-
+    try{
     for(var i in $in.honorsAwards.values){
         var element = $in.honorsAwards.values[i];
         //console.log(element);
@@ -144,12 +149,14 @@ exports.getLinkedin = function(req, res, next) {
             awarder: element.issuer,
             summary: ""
         });
+    }}catch(err){
+        
     }
     /*
      * PARSE SKILLS DATA FROM LINKEDIN API
      */
     var _skills = [];
-
+    try{
     for(var i in $in.skills.values){
         var element = $in.skills.values[i];
         //console.log(element);
@@ -159,12 +166,14 @@ exports.getLinkedin = function(req, res, next) {
             level: "",
             keywords: ""
         });
+    }}catch(err){
+        
     }
     /*
      * PARSE LANGUAGES DATA FROM LINKEDIN API
      */
     var _languages = [];
-
+    try{
     for(var i in $in.languages.values){
         var element = $in.languages.values[i];
         //console.log(element);
@@ -173,12 +182,14 @@ exports.getLinkedin = function(req, res, next) {
             language: element.language.name,
             fluency: ""
         });
+    }}catch(err){
+        
     }
     /*
      * PARSE VOLUNTEER DATA FROM LINKEDIN API
      */
     var _volunteer = [];
-
+    try{
     for(var i in $in.volunteer.volunteerExperiences.values){
         var element = $in.volunteer.volunteerExperiences.values[i];
         //console.log(element);
@@ -192,6 +203,8 @@ exports.getLinkedin = function(req, res, next) {
             summary: "",
             highlights: ""
         });
+    }}catch(err){
+        
     }
     //console.log(_education);
     // Creating resume
