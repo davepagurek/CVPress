@@ -220,7 +220,7 @@ var FormManager = (function() {
     var h = '<html>\
 <head>\
 <title>' + f.element("name").value + '</title>\
-<link rel="stylesheet" type="text/css" href="../css/exportStyle.css" />\
+<link rel="stylesheet" type="text/css" href="/public/css/exportStyle.css" />\
 </head>\
 <body>\
 <div class="wrapper">\
