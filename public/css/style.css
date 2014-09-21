@@ -8,7 +8,7 @@
 body {
   margin:0;
   padding:0;
-  background-color:#FFF;
+  background-color:#e51c23;
   font-family: 'Open Sans', sans-serif;
   -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
      -moz-animation: fadein 1.5s; /* Firefox < 16 */
@@ -23,6 +23,9 @@ body {
   -ms-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   height: 50px;
   line-height: 50px;
   padding:15px;
@@ -30,19 +33,15 @@ body {
   top:0;
   left:0;
   right:0;
+  background-color:#FFF;
 }
 
 .scrolled #menu {
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   opacity:0;
-  
 }
 
 .scrolled #menu:hover {
   opacity:1;
-  background-color:#FFF;
 }
 
 #menu h1 {
@@ -84,12 +83,12 @@ body {
 }
 
 #resume {
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(150, 150, 150, 0.75);
-  -moz-box-shadow:    0px 0px 20px 0px rgba(150, 150, 150, 0.75);
-  box-shadow:         0px 0px 20px 0px rgba(150, 150, 150, 0.75);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 150, 150, 0.2);
+  -moz-box-shadow:    0px 0px 20px 0px rgba(0, 150, 150, 0.2);
+  box-shadow:         0px 0px 20px 0px rgba(0, 150, 150, 0.2);
   padding: 40px;
   background-color:#FFF;
-  margin:100px 0 50px 0;
+  margin:120px 0 50px 0;
 }
 
 

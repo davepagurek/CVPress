@@ -277,6 +277,8 @@ var FormManager = (function() {
       }
       if (json.basics.profiles) {
         json.basics.profiles.forEach(profiles.addItem);
+      } else {
+        profiles.addItem();
       }
       if (json.basics.location.address) {
         f.element("address").value = json.basics.location.address;
