@@ -5,7 +5,7 @@ var path = require('path');
 exports.render = function(req, res) {
   
   function puts(error, stdout, stderr) { sys.puts(stdout) }
-  exec("wkhtmltopdf http://www.unixtimestamp.com/index.php public/resume_gen.pdf", function (error, stdout, stderr) {
+  exec("wkhtmltopdf http://www.unixtimestamp.com/index.php public/resume.pdf", function (error, stdout, stderr) {
     sys.print('stdout: ' + stdout);
     sys.print('stderr: ' + stderr);
     if (error != null) {
