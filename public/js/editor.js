@@ -27,7 +27,7 @@ window.addEventListener("load", function() {
     checkLinkedIn();
   });
   
-  if (window.location.hash == "linkedin") {
+  if (window.location.hash == "#linkedin") {
       checkLinkedIn();
   }
   
