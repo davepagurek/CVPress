@@ -282,6 +282,7 @@ passport.use(new LinkedInStrategy(secrets.linkedin, function(req, accessToken, r
           /*user.save(function(err) {
             done(err, user);
           });*/
+          done(err, user);
         }
       });
     });
