@@ -197,7 +197,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
 });
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/404' }), function(req, res) {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect(req.session.returnTo || '/#linkedin');
 });
 
 
