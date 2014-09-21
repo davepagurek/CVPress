@@ -18,7 +18,7 @@
 
 module.exports = {
 
-  db: process.env.MONGODB|| 'mongodb://localhost:27017/test',
+  db: process.env.MONGODB|| 'mongodb://cvpress:cvpress@ds039000.mongolab.com:39000/heroku_app29779563',
 
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 
@@ -82,10 +82,10 @@ module.exports = {
   },
 
   linkedin: {
-    clientID: process.env.LINKEDIN_ID || '77dqe9q06zyq88',
-    clientSecret: process.env.LINKEDIN_SECRET || 'aJe4KFLsfP6BfhtJ',
+    clientID: process.env.LINKEDIN_ID || '77bcma4keunf47',
+    clientSecret: process.env.LINKEDIN_SECRET || '5XZflmfyCLASF7nj',
     callbackURL: '/auth/linkedin/callback',
-    scope: ['r_fullprofile', 'r_emailaddress', 'r_network','r_basicprofile','r_contactinfo'],
+    scope: ['r_fullprofile', 'r_emailaddress','r_basicprofile','r_contactinfo'],
     passReqToCallback: true
   },
 
