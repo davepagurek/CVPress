@@ -248,7 +248,7 @@ exports.getLinkedin = function(req, res, next) {
         reference: ""
       }]
     });
-    res.send('{"status":"OK"}');
+    res.send(me);
 /*
       
     res.render('api/linkedin', {
